@@ -9,7 +9,7 @@ from itertools import chain, combinations
 
 #STOCK
 smi = "^SSMI"
-spi_etf = "CHSPI" #does not work
+spi_etf = "CHSPI.SW" 
 sp500 = "^GSPC"
 world_etf= "URTH"
 europe_etf= "IEUR"
@@ -18,20 +18,20 @@ em_etf ="EEM"
 #COMMODITIES
 gold = "GLD"
 gold_etf = "RING"
-gold_ch = "XAUCHF=X"  #does not work
+gold_ch = "ZGLD.SW"  
 
 #FIXED INCOME
-ten_year_gov_bond = "CH10YT=RR"  #does not work
+ten_year_gov_bond = "CH10YT=RR"  #does not work --> find API over SNB
 ch_gov_bond = "AGGS.SW"
-ch_corp_bond = "CHBBB.SW" #does not work
+eur_corp_bond_bbb = "IEAC.SW" 
 tips_bond = "TIP"
 treasury_etf = "GOVT"
-inflation_bond ="INWG.L"  #does not work
+eur_inflation_bond ="IBCI.L"  
 emerg_mark_bond = "EMB"
-prime_site = "SPSN.W"  #does not work
 
 #REAL ESTATE
-ch_property_etf = "CHREIT.SW"  #does not work
+prime_site = "SPSN.SW" 
+ch_property_etf = "LAND.SW"  
 vang_real_est_etf = "VNQ"
 dev_eur_prop_etf = "REXP.DE"
 
@@ -41,10 +41,10 @@ eth = "ETH-USD"
 crypto_index = "BITW"
 
 asset_class_map = {
-    "stocks": ["^SSMI", "CHSPI", "^GSPC", "URTH", "IEUR", "EEM"],
-    "commodities": ["GLD", "RING", "XAUCHF=X"],
-    "fixed_income": ["CH10YT=RR", "AGGS.SW", "CHBBB.SW", "TIP", "GOVT", "INWG.L", "EMB", "SPSN.W"],
-    "real_estate": ["CHREIT.SW", "VNQ", "REXP.DE"],
+    "stocks": ["^SSMI", "CHSPI.SW", "^GSPC", "URTH", "IEUR", "EEM"],
+    "commodities": ["GLD", "RING", "ZGLD.SW"],
+    "fixed_income": ["CH10YT=RR", "AGGS.SW", "IEAC.SW", "TIP", "GOVT", "IBCI.L", "EMB"],
+    "real_estate": ["SPSN.SW","LAND.SW", "VNQ", "REXP.DE"],
     "cryptocurrency": ["BTC-USD", "ETH-USD", "BITW"]
 }
 
