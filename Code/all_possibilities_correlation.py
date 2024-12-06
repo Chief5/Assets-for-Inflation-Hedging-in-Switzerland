@@ -946,7 +946,7 @@ intervalls = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
-test_table = make_data_table(smi, sp500, btc, eth, interval=intervalls, period=time_horizon)
+test_table = make_data_table(smi, abb, alcon, richemont, credit_suisse, geberit, givaudan, holcim, logitech, lonza, nestle, novartis, partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, loreal, totalenergies, astrazeneca, shell, linde, siemens, unilever, airbus, schneider_electric, banco_santander, enel, bp, air_liquide, allianz, diageo, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, tesla, nvidia, jpmorgan_chase, johnson_and_johnson, visa, procter_and_gamble, unitedhealth_group, home_depot, mastercard, exxon_mobil, chevron, pfizer, coca_cola, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank, ping_an, sony, toyota, icbc, agricultural_bank_of_china, bank_of_china, petrochina, china_mobile, hon_hai, jd, ishares_bloomberg_commodity_ucits_etf, wisdomtree_bloomberg_commodity_ucits_etf, ubs_cmci_composite_sf_ucits_etf, invesco_commodity_composite_ucits_etf, lyxor_commodities_crb_tr_ucits_etf, ishares_physical_gold_etf, wisdomtree_physical_gold, ubs_etf_gold, invesco_physical_gold_etc, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, ubs_etf_cmci_energy_sf_ucits_etf, invesco_morningstar_energy_sector_ucits_etf, lyxor_commodities_crude_oil_ucits_etf, ishares_agribusiness_ucits_etf, wisdomtree_commodities_sectors_agribusiness, ubs_etf_cmci_agriculture_sf_ucits_etf, invesco_morningstar_agribusiness_ucits_etf, lyxor_commodities_rogers_agriculture_ucits_etf, ishares_physical_silver_etf, wisdomtree_physical_silver, ubs_etf_cmci_industrial_metals_sf_ucits_etf, invesco_physical_silver_etc, xetra_silver, wisdomtree_copper, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_wti_crude_oil_1x_daily_short, wisdomtree_natural_gas_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_gold_2x_daily_leveraged, ishares_global_commodities_equity_ucits_etf, lyxor_commodities_crb_non_energies_ucits_etf, invesco_morningstar_global_commodities_ucits_etf, ubs_etf_cmci_ex_energy_sf_ucits_etf, wisdomtree_commodity_securities_limited, wisdomtree_commodity_futures, lyxor_commodities_rogers_international_ucits_etf, invesco_commodity_futures_ucits_etf, ubs_etf_cmci_commodity_futures_sf_ucits_etf, ishares_commodity_futures_strategy_ucits_etf, ishares_bloomberg_commodity_ucits_etf_eur_hedged, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ubs_etf_cmci_composite_sf_ucits_etf_chf_hedged, invesco_commodity_composite_ucits_etf_usd_hedged, lyxor_commodities_crb_tr_ucits_etf_jpy_hedged, ishares_core_global_aggregate_bond_ucits_etf, vanguard_global_bond_index_fund_ucits_etf, ishares_global_corporate_bond_ucits_etf, spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, ishares_switzerland_govt_bond_ucits_etf, ubs_etf_swiss_govt_bond_1_3_ucits_etf, spdr_bloomberg_barclays_1_3_year_us_treasury_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, vanguard_us_government_bond_index_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, spdr_bloomberg_barclays_euro_corporate_bond_ucits_etf, vanguard_euro_investment_grade_bond_index_ucits_etf, ubs_etf_cmci_corporate_bond_ucits_etf, ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf, spdr_bloomberg_barclays_euro_high_yield_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, ubs_etf_jp_morgan_usd_emerging_markets_bond_ucits_etf, ishares_usd_emerging_markets_bond_ucits_etf, ishares_euro_inflation_linked_govt_bond_ucits_etf, spdr_bloomberg_barclays_euro_inflation_linked_bond_ucits_etf, vanguard_us_tips_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf, spdr_bloomberg_barclays_0_3_year_us_corporate_bond_ucits_etf, vanguard_usd_corporate_1_3_year_bond_ucits_etf, ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, ishares_usd_short_duration_corporate_bond_ucits_etf, ishares_jp_morgan_em_local_govt_bond_ucits_etf, spdr_bloomberg_barclays_emerging_markets_local_bond_ucits_etf, vanguard_emerging_markets_bond_ucits_etf, ubs_etf_jp_morgan_emerging_markets_bond_ucits_etf, ishares_emerging_markets_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2025_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, invesco_bulletshares_2027_corporate_bond_ucits_etf, invesco_bulletshares_2028_corporate_bond_ucits_etf, invesco_bulletshares_2024_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2025_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2026_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2027_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2028_high_yield_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, vanguard_global_aggregate_bond_ucits_etf, spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, ishares_usd_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, hiag_immobilien, plazza_ag, sf_urban_properties, warteck_invest, fundamenta_real_estate, varia_us_properties, novavest_real_estate, zueblin_immobilien, ina_invest_holding, ubs_etf_sxi_real_estate, credit_suisse_real_estate_fund_siat, ubs_property_fund_residential, credit_suisse_real_estate_fund_livingplus, credit_suisse_real_estate_fund_green_property, ubs_property_fund_mixed_sima, swisscanto_real_estate_fund, ubs_ast_immobilien_schweiz, la_fonciere, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, vanguard_global_ex_us_real_estate_etf, spdr_dow_jones_global_real_estate_etf, spdr_dow_jones_international_real_estate_etf, land_securities_group, unibail_rodamco_westfield, vonovia_se, leg_immobilien, deutsche_wohnen, grand_city_properties, btc, eth, bnb, xrp, ada, doge, sol, dot, matic, ltc, interval=intervalls, period=time_horizon)
 #test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
@@ -967,7 +967,7 @@ stocks = make_asset_class(
     meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank, ping_an, sony,
     toyota, icbc, agricultural_bank_of_china, bank_of_china, petrochina, china_mobile, hon_hai, jd)
 
-stock_subset = find_subsets(stocks, 1)
+stock_subset = find_subsets(stocks, 3)
 all_possible_portfolios_stocks = make_all_portfolios_per_asset_class(stock_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_stocks)
@@ -994,7 +994,7 @@ commodities = make_asset_class(
     ubs_etf_cmci_composite_sf_ucits_etf_chf_hedged, invesco_commodity_composite_ucits_etf_usd_hedged, 
     lyxor_commodities_crb_tr_ucits_etf_jpy_hedged)
 
-commodities_subset = find_subsets(commodities, 1)
+commodities_subset = find_subsets(commodities, 3)
 all_possible_portfolios_commodities = make_all_portfolios_per_asset_class(commodities_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_commodities)
@@ -1026,7 +1026,7 @@ fixed_income = make_asset_class(ishares_core_global_aggregate_bond_ucits_etf, va
     spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, 
     ishares_usd_aggregate_bond_ucits_etf)
 
-fixed_income_subset = find_subsets(fixed_income, 1)
+fixed_income_subset = find_subsets(fixed_income, 3)
 all_possible_portfolios_fixed_income = make_all_portfolios_per_asset_class(fixed_income_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_fixed_income)
@@ -1044,7 +1044,7 @@ real_estate = make_asset_class(swiss_prime_site, psp_swiss_property, allreal_hol
     spdr_dow_jones_international_real_estate_etf, land_securities_group, unibail_rodamco_westfield, 
     vonovia_se, leg_immobilien, deutsche_wohnen, grand_city_properties)
 
-real_estate_subset = find_subsets(real_estate, 1)
+real_estate_subset = find_subsets(real_estate, 3)
 all_possible_portfolios_real_estate = make_all_portfolios_per_asset_class(real_estate_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_estate)
@@ -1052,7 +1052,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_es
 #------------CRYPTOCURRENCY------------
 crypto = make_asset_class(btc, eth, bnb, xrp, ada, doge, sol, dot, matic, ltc)
 
-crypto_subset = find_subsets(crypto, 1)
+crypto_subset = find_subsets(crypto, 3)
 all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
