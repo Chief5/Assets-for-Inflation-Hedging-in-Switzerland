@@ -615,6 +615,78 @@ def display_table_as_figure(df, title):
     plt.title(title, fontsize=14, pad=20)
     plt.show()
 
+def display_table_with_colorscale(df, title):
+    """
+    Displays a DataFrame as a Matplotlib table with a color scale applied to the cells.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the table.
+    """
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x.split(": ")[-1])  # Extract numeric value after colon if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+
+    # Apply numeric conversion to extract numbers where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Debugging: Check the converted DataFrame
+    print("Converted DataFrame (Numeric):")
+    print(df_numeric)
+
+    # Define the color-scaling function
+    def cell_color(val):
+        if pd.isna(val):  # If value is NaN
+            return "white"  # Default background color
+        elif val > 1:
+            return "lightgreen"  # High values
+        elif val <= 0:
+            return "lightcoral"  # Negative values
+        else:
+            return "white"  # Default color for neutral values
+
+    # Create a Matplotlib figure
+    fig, ax = plt.subplots(figsize=(10, len(df) * 0.8))  # Adjust figure size dynamically
+    ax.axis("off")  # Turn off axes
+
+    # Create the table
+    table = ax.table(
+        cellText=df.values,  # Original values (including "No valid data")
+        colLabels=df.columns,
+        rowLabels=df.index,
+        cellLoc="center",
+        loc="center"
+    )
+
+    # Apply colors to cells
+    for (row, col), cell in table.get_celld().items():
+        if row == 0 or col == -1:  # Skip headers and row labels
+            cell.set_fontsize(10)
+            cell.set_text_props(weight="bold")
+            continue
+        try:
+            # Get the numeric value for the cell from df_numeric
+            value = df_numeric.iloc[row - 1, col]
+            # Apply the color to the cell background
+            cell.set_facecolor(cell_color(value))
+        except Exception as e:
+            print(f"Error applying color to cell ({row}, {col}): {e}")
+            cell.set_facecolor("white")  # Default for invalid or non-numeric cells
+
+    # Adjust font size and column width
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
+
+    # Add a title
+    plt.title(title, fontsize=14, pad=20)
+
+    # Display the figure
+    plt.show()
+
 
 intervalls = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
@@ -689,8 +761,12 @@ mom_table_min = create_min_correlation_table(grouped_data, 'MoM_table')
 yoy_table_min = create_min_correlation_table(grouped_data, 'YoY_table')
 
 # Display the tables as figures
-display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
-display_table_as_figure(yoy_table_max, "Maximum YoY Correlation Table")
-display_table_as_figure(mom_table_min, "Minimum MoM Correlation Table")
-display_table_as_figure(yoy_table_min, "Minimum YoY Correlation Table")
+# display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
+# display_table_as_figure(yoy_table_max, "Maximum YoY Correlation Table")
+# display_table_as_figure(mom_table_min, "Minimum MoM Correlation Table")
+# display_table_as_figure(yoy_table_min, "Minimum YoY Correlation Table")
 
+display_table_with_colorscale(mom_table_max, "Maximum MoM Correlation Table")
+display_table_with_colorscale(yoy_table_max, "Maximum YoY Correlation Table")
+display_table_with_colorscale(mom_table_min, "Minimum MoM Correlation Table")
+display_table_with_colorscale(yoy_table_min, "Minimum YoY Correlation Table")

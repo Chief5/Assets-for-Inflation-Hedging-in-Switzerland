@@ -6,6 +6,9 @@ import os
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
+from tabulate import tabulate as tab
+from PIL import Image, ImageDraw, ImageFont
+
 
 #STOCK
 smi = "^SSMI"
@@ -453,11 +456,11 @@ def split_and_sort(dataframe):
     return mom_table, yoy_table
 
 
-def calcualte_beta_for_all(all_combinations):
+def calculate_beta_for_all(all_combinations):
 
     all_tables = {}
     for all in all_combinations:
-        all_portfolios = make_all_portfolios(all, intervalls, time_horizon, test_table)
+        all_portfolios = make_all_portfolios(all, intervals, time_horizon, test_table)
         all_single_beta_values = calculate_single_beta_for_all_portfolios(all_portfolios)
         flattened_data = flatten_data(all_single_beta_values)
         mom_table, yoy_table = split_and_sort(flattened_data)
@@ -587,7 +590,7 @@ def create_max_correlation_table(data, table_type):
                     # Find the row with the maximum correlation value
                     max_row = df.loc[df.iloc[:, 1].idxmax()]  # Assuming correlation is in the 2nd column
                     # Format: "Ticker: Value"
-                    result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.6f}"
+                    result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.2f}"
                 else:
                     # Handle case where all values are NaN
                     result_table.loc[timeframe, asset_class] = "No valid data"
@@ -639,7 +642,7 @@ def create_min_correlation_table(data, table_type):
                     # Find the row with the minimum correlation value
                     min_row = df.loc[df.iloc[:, 1].idxmin()]  # Assuming correlation is in the 2nd column
                     # Format: "Ticker: Value"
-                    result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.6f}"
+                    result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.2f}"
                 else:
                     # Handle case where all values are NaN
                     result_table.loc[timeframe, asset_class] = "No valid data"
@@ -647,6 +650,29 @@ def create_min_correlation_table(data, table_type):
     return result_table
 
 def display_table_as_figure(df, title):
+    
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+
+    # Convert all values in the DataFrame to numeric where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Define the color-scaling function
+    def cell_color(val):
+        if pd.isna(val):  # If value is NaN
+            return "white"  # Default background color
+        elif val > 0.5:
+            return "lightgreen"  # High values
+        elif val <= 0:
+            return "lightcoral"  # Negative values
+        else:
+            return "white"  # Default color for neutral values
+
+    
     fig, ax = plt.subplots(figsize=(10, len(df) * 0.6))  # Adjust height based on rows
     ax.axis('off')  # Turn off the axis
     ax.axis('tight')  # Tight layout for the table
@@ -659,20 +685,143 @@ def display_table_as_figure(df, title):
         cellLoc="center",
         loc="center"
     )
+            
+    for (row, col), cell in table.get_celld().items():
+        if row == 0 or col == -1:  # Skip headers
+            cell.set_fontsize(10)
+            cell.set_text_props(weight="bold")
+            continue
+        try:
+            # Get the numeric value for the cell
+            value = df_numeric.iloc[row - 1, col]
+            # Apply the color to the cell background
+            cell.set_facecolor(cell_color(value))
+        except:
+            cell.set_facecolor("white")  # Default for invalid or non-numeric cells
+
     table.auto_set_font_size(False)
     table.set_fontsize(10)
     table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
 
+
+            
     # Add title
     plt.title(title, fontsize=14, pad=20)
     plt.show()
 
 
-intervalls = [monthyl]
+def display_table_with_tab(df, title):
+    """
+    Display a DataFrame as a tabular text format using tabulate.
+    Converts numeric values, handles non-numeric data, and applies title.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the table.
+    """
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return x  # Keep non-numeric values unchanged
+
+    # Convert all values in the DataFrame to numeric where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Convert the DataFrame into a tabulated format
+    table = tab(
+        df_numeric,
+        headers="keys",  # Use column headers
+        tablefmt="pretty",  # Choose a table format
+        showindex=True  # Include row index
+    )
+
+    # Print the title and the table
+    print("\n" + title + "\n" + "-" * len(title))  # Print the title with a separator
+    print(table)
+
+
+
+
+
+def display_table_with_colorscale(df, title):
+    """
+    Displays a DataFrame as a Matplotlib table with a color scale applied to the cells.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the table.
+    """
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x.split(": ")[-1])  # Extract numeric value after colon if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+
+    # Apply numeric conversion to extract numbers where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Debugging: Check the converted DataFrame
+    print("Converted DataFrame (Numeric):")
+    print(df_numeric)
+
+    # Define the color-scaling function
+    def cell_color(val):
+        if pd.isna(val):  # If value is NaN
+            return "white"  # Default background color
+        elif val > 0.5:
+            return "lightgreen"  # High values
+        elif val <= 0:
+            return "lightcoral"  # Negative values
+        else:
+            return "white"  # Default color for neutral values
+
+    # Create a Matplotlib figure
+    fig, ax = plt.subplots(figsize=(10, len(df) * 0.8))  # Adjust figure size dynamically
+    ax.axis("off")  # Turn off axes
+
+    # Create the table
+    table = ax.table(
+        cellText=df.values,  # Original values (including "No valid data")
+        colLabels=df.columns,
+        rowLabels=df.index,
+        cellLoc="center",
+        loc="center"
+    )
+
+    # Apply colors to cells
+    for (row, col), cell in table.get_celld().items():
+        if row == 0 or col == -1:  # Skip headers and row labels
+            cell.set_fontsize(10)
+            cell.set_text_props(weight="bold")
+            continue
+        try:
+            # Get the numeric value for the cell from df_numeric
+            value = df_numeric.iloc[row - 1, col]
+            # Apply the color to the cell background
+            cell.set_facecolor(cell_color(value))
+        except Exception as e:
+            print(f"Error applying color to cell ({row}, {col}): {e}")
+            cell.set_facecolor("white")  # Default for invalid or non-numeric cells
+
+    # Adjust font size and column width
+    table.auto_set_font_size(False)
+    table.set_fontsize(10)
+    table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
+
+    # Add a title
+    plt.title(title, fontsize=14, pad=20)
+
+    # Display the figure
+    plt.show()
+
+intervals = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
-test_table = make_data_table(smi, sp500, world_etf, europe_etf, em_etf, gold, gold_etf, ch_gov_bond, tips_bond,treasury_etf, emerg_mark_bond, vang_real_est_etf, btc, eth, interval=intervalls, period=time_horizon)
+test_table = make_data_table(smi, sp500, world_etf, europe_etf, em_etf, gold, gold_etf, ch_gov_bond, tips_bond,treasury_etf, emerg_mark_bond, vang_real_est_etf, btc, eth, interval=intervals, period=time_horizon)
 #test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
@@ -721,7 +870,7 @@ all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subs
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
 
 
-all_returns = calcualte_beta_for_all(all_possible_portfolios_all_asset_classes)
+all_returns = calculate_beta_for_all(all_possible_portfolios_all_asset_classes)
 
 #CLEANU UP DATA
 #drop interval
@@ -741,9 +890,95 @@ yoy_table_max = create_max_correlation_table(grouped_data, 'YoY_table')
 mom_table_min = create_min_correlation_table(grouped_data, 'MoM_table')
 yoy_table_min = create_min_correlation_table(grouped_data, 'YoY_table')
 
-# Display the tables as figures
-display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
-display_table_as_figure(yoy_table_max, "Maximum YoY Correlation Table")
-display_table_as_figure(mom_table_min, "Minimum MoM Correlation Table")
-display_table_as_figure(yoy_table_min, "Minimum YoY Correlation Table")
 
+# Color code tables 
+
+def color_scale_table(df):
+    """
+    Apply color scaling to a DataFrame.
+    Highlights cells in green for values > 0.5 and red for values <= 0.5.
+    
+    Parameters:
+        df (pd.DataFrame): The DataFrame to style.
+    
+    Returns:
+        pd.io.formats.style.Styler: A styled DataFrame with color formatting.
+    """
+    # Ensure all numeric values are floats, replace non-numeric entries with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+    
+    # Apply numeric conversion
+    df_numeric = df.applymap(safe_float)
+
+    # Define a helper function for individual cells
+    # Define a helper function for individual cells
+    def color_scale(val):
+        if pd.isna(val):  # Check for NaN
+            return ''  # No style for NaN
+        return 'background-color: green' if val > 0.5 else 'background-color: red'
+    
+    # Apply the color scale function element-wise to the DataFrame
+    return df_numeric.style.applymap(color_scale)
+
+
+
+def display_heatmap(df, title, cmap):
+    """
+    Display a DataFrame as a heatmap.
+    
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the heatmap.
+        cmap (str): The colormap to use (default: "coolwarm").
+    """
+    # Convert all numeric values, handle non-numeric cells as NaN
+    # df = df.applymap(lambda x: round(float(x), 2) if isinstance(x, (int, float, np.number)) else x)
+
+    def safe_float(x):
+        try:
+            return round(float(x), 2)
+        except:
+            return np.nan  # Keep non-numeric values as is
+    
+    df = df.applymap(safe_float)
+    
+    # Drop rows and columns that are entirely NaN
+    df_numeric = df.dropna(how='all', axis=0)  # Drop rows with all NaNs
+    df_numeric = df_numeric.dropna(how='all', axis=1)  # Drop columns with all NaNs
+
+    # Check if the DataFrame is empty after cleaning
+    if df_numeric.empty:
+        print("The DataFrame is empty after cleaning. Cannot plot a heatmap.")
+        return
+    
+    # Create the heatmap
+    plt.figure(figsize=(10, len(df) * 0.6))
+    sns.heatmap(df_numeric, annot=True, fmt=".2f", cmap=cmap, linewidths=0.5, cbar=True, 
+                xticklabels=df.columns, yticklabels=df.index)
+
+    # Add title and labels
+    plt.title(title, fontsize=14, pad=20)
+    plt.xlabel("Asset Classes")
+    plt.ylabel("Timeframes")
+    plt.tight_layout()
+    plt.show()
+
+# display_heatmap(mom_table_max, "Maximum MoM Correlation Table", cmap="coolwarm")
+
+# Display the tables as figures
+# display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
+# display_table_as_figure(yoy_table_max, "Maximum YoY Correlation Table")
+# display_table_as_figure(mom_table_min, "Minimum MoM Correlation Table")
+# display_table_as_figure(yoy_table_min, "Minimum YoY Correlation Table")
+
+display_table_with_tab(mom_table_max, "Maximum MoM Correlation Table") # Displays in terminal
+
+
+display_table_with_colorscale(mom_table_max, "Maximum MoM Correlation Table")
+display_table_with_colorscale(yoy_table_max, "Maximum YoY Correlation Table")
+display_table_with_colorscale(mom_table_min, "Minimum MoM Correlation Table")
+display_table_with_colorscale(yoy_table_min, "Minimum YoY Correlation Table")
