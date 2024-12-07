@@ -154,8 +154,8 @@ asset_class_map = {
         "GOOG", "BRK-B", "META", "TSLA", "NVDA"
     ],
     "commodities":[
-    "COMM.L", "LGCF.L", "IGLN.L", "4GLD.DE", "SPOG.L", "BRNT.L", "ISLN.L", 
-    "NGAS.L", "WEAT.L", "CORN.L", "SOYB.L", "LOIL.L", "SNGA.L", "COMF.L", "WCOG.L"
+        "COMM.L", "LGCF.L", "IGLN.L", "4GLD.DE", "SPOG.L", "BRNT.L", "ISLN.L", 
+        "NGAS.L", "WEAT.L", "CORN.L", "SOYB.L", "LOIL.L", "SNGA.L", "COMF.L", "WCOG.L"
     ],
     "fixed_income": [
         "CORP.L", "IBTM.L", "IBCX.L", "LQDE.L", "IHYG.L", 
