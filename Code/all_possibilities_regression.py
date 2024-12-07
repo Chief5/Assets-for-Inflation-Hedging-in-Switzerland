@@ -744,24 +744,24 @@ time_horizon = [two_year, five_year, ten_year, max_year]
 
 #Download all Data 
 test_table = make_data_table(smi, abb, alcon, richemont, kuehne_nagel, geberit, givaudan, holcim, logitech, lonza, nestle, novartis, 
-partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, 
-loreal, totalenergies, astrazeneca, shell, linde, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, 
-tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, 
-china_construction_bank, ishares_diversified_commodity_swap_ucits_etf, 
-invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, 
-ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
-wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, 
-wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ishares_global_corporate_bond_ucits_etf, 
-ishares_euro_corporate_bond_large_cap_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
-ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
-ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
-ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, 
-ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, 
-invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
-allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, ubs_etf_sxi_real_estate, 
-swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
-ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, btc, eth, bnb, xrp, ada, 
-interval=intervalls, period=time_horizon)
+    partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, 
+    loreal, totalenergies, astrazeneca, shell, linde, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, 
+    tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, 
+    china_construction_bank, ishares_diversified_commodity_swap_ucits_etf, 
+    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, 
+    ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
+    wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, 
+    wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ishares_global_corporate_bond_ucits_etf, 
+    ishares_euro_corporate_bond_large_cap_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
+    ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
+    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
+    ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, 
+    ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, 
+    invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
+    allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, ubs_etf_sxi_real_estate, 
+    swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
+    ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, btc, eth, bnb, xrp, ada, 
+    interval=intervalls, period=time_horizon)
 #test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
