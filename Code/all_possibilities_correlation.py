@@ -13,7 +13,7 @@ smi = "^SSMI"
 abb = "ABBN.SW"
 alcon = "ALC.SW"
 richemont = "CFR.SW"
-credit_suisse = "CSGN.SW"
+kuehne_nagel = "KNIN.SW"
 geberit = "GEBN.SW"
 givaudan = "GIVN.SW"
 holcim = "HOLN.SW"
@@ -30,7 +30,7 @@ swiss_life = "SLHN.SW"
 swiss_re = "SREN.SW"
 ubs = "UBSG.SW"
 zurich_insurance = "ZURN.SW"
-# Top 20 European Companies by Market Capitalization
+# Top 10 European Companies by Market Capitalization
 novo_nordisk = "NVO"
 lvmh = "MC.PA"
 sap = "SAP"
@@ -41,39 +41,18 @@ totalenergies = "TTE"
 astrazeneca = "AZN"
 shell = "SHEL"
 linde = "LIN"
-siemens = "SIE.DE"
-unilever = "UL"
-airbus = "AIR.PA"
-schneider_electric = "SU.PA"
-banco_santander = "SAN"
-enel = "ENEL.MI"
-bp = "BP"
-air_liquide = "AI.PA"
-allianz = "ALV.DE"
-diageo = "DEO"
-#S&P500 (Top 20 S&P 500 Constituents)
+#Top 10 S&P 500 Constituents by Market Capitalization
 sp500 = "^GSPC"
 apple = "AAPL"
 microsoft = "MSFT"
 amazon = "AMZN"
 alphabet_a = "GOOGL"
 alphabet_c = "GOOG"
-berkshire_hathaway = "BRK.B"
+berkshire_hathaway = "BRK-B"
 meta_platforms = "META"
 tesla = "TSLA"
 nvidia = "NVDA"
-jpmorgan_chase = "JPM"
-johnson_and_johnson = "JNJ"
-visa = "V"
-procter_and_gamble = "PG"
-unitedhealth_group = "UNH"
-home_depot = "HD"
-mastercard = "MA"
-exxon_mobil = "XOM"
-chevron = "CVX"
-pfizer = "PFE"
-coca_cola = "KO"
-# Top 20 Asian Companies by Market Capitalization
+# Top 10 Asian Companies by Market Capitalization
 tsmc = "TSM"
 tencent = "TCEHY"
 alibaba = "BABA"
@@ -84,141 +63,59 @@ kweichow_moutai = "600519.SS"
 icici_bank = "ICICIBANK.NS"
 hdfc_bank = "HDFCBANK.NS"
 china_construction_bank = "0939.HK"
-ping_an = "2318.HK"
-sony = "6758.T"
-toyota = "7203.T"
-icbc = "1398.HK"
-agricultural_bank_of_china = "1288.HK"
-bank_of_china = "3988.HK"
-petrochina = "0857.HK"
-china_mobile = "0941.HK"
-hon_hai = "2317.TW"
-jd = "9618.HK"
 
 #COMMODITIES
 # Broad Commodity ETFs
-ishares_bloomberg_commodity_ucits_etf = "ICOM.SW"
-wisdomtree_bloomberg_commodity_ucits_etf = "WCOA.SW"
-ubs_cmci_composite_sf_ucits_etf = "CCPHA.SW"
-invesco_commodity_composite_ucits_etf = "COMC.SW"
-lyxor_commodities_crb_tr_ucits_etf = "CRB.SW"
-# Precious Metals ETFs
-ishares_physical_gold_etf = "IGLN.SW"
-wisdomtree_physical_gold = "PHAU.SW"
-ubs_etf_gold = "AUUS.SW"
-invesco_physical_gold_etc = "SGLD.SW"
-xetra_gold = "4GLD.SW"
+ishares_diversified_commodity_swap_ucits_etf = "COMM.L"
+invesco_commodity_composite_ucits_etf = "LGCF.L"
+# Gold ETFs
+ishares_physical_gold_etf = "IGLN.L"
+xetra_gold = "4GLD.DE"
 # Energy ETFs
-ishares_oil_gas_exploration_production_ucits_etf = "SPOG.SW"
-wisdomtree_brent_crude_oil = "BRNT.SW"
-ubs_etf_cmci_energy_sf_ucits_etf = "CENUS.SW"
-invesco_morningstar_energy_sector_ucits_etf = "XENS.SW"
-lyxor_commodities_crude_oil_ucits_etf = "CRU.SW"
+ishares_oil_gas_exploration_production_ucits_etf = "SPOG.L"
+wisdomtree_brent_crude_oil = "BRNT.L"
 # Agriculture ETFs
-ishares_agribusiness_ucits_etf = "SAGR.SW"
-wisdomtree_commodities_sectors_agribusiness = "AGRI.SW"
-ubs_etf_cmci_agriculture_sf_ucits_etf = "CAGUS.SW"
-invesco_morningstar_agribusiness_ucits_etf = "FARM.SW"
-lyxor_commodities_rogers_agriculture_ucits_etf = "AGRO.SW"
-# Industrial Metals ETFs
-ishares_physical_silver_etf = "ISLN.SW"
-wisdomtree_physical_silver = "PHAG.SW"
-ubs_etf_cmci_industrial_metals_sf_ucits_etf = "CIMUS.SW"
-invesco_physical_silver_etc = "SSIL.SW"
-xetra_silver = "4SIL.SW"
+# Silver ETFs
+ishares_physical_silver_etf = "ISLN.L"
 # Specific Commodity ETFs
-wisdomtree_copper = "COPA.SW"
-wisdomtree_natural_gas = "NGAS.SW"
-wisdomtree_wheat = "WEAT.SW"
-wisdomtree_corn = "CORN.SW"
-wisdomtree_soybeans = "SOYB.SW"
+wisdomtree_natural_gas = "NGAS.L"
+wisdomtree_wheat = "WEAT.L"
+wisdomtree_corn = "CORN.L"
+wisdomtree_soybeans = "SOYB.L"
 # Leveraged and Inverse Commodity ETFs
-wisdomtree_wti_crude_oil_2x_daily_leveraged = "LOIL.SW"
-wisdomtree_wti_crude_oil_1x_daily_short = "SOIL.SW"
-wisdomtree_natural_gas_2x_daily_leveraged = "LNGA.SW"
-wisdomtree_natural_gas_1x_daily_short = "SNGA.SW"
-wisdomtree_gold_2x_daily_leveraged = "LBUL.SW"
+wisdomtree_wti_crude_oil_2x_daily_leveraged = "LOIL.L"
+wisdomtree_natural_gas_1x_daily_short = "SNGA.L"
 # Commodity Equity ETFs
-ishares_global_commodities_equity_ucits_etf = "COAU.SW"
-lyxor_commodities_crb_non_energies_ucits_etf = "CRBN.SW"
-invesco_morningstar_global_commodities_ucits_etf = "GCCM.SW"
-ubs_etf_cmci_ex_energy_sf_ucits_etf = "CEXUS.SW"
-wisdomtree_commodity_securities_limited = "COMS.SW"
 # Commodity Futures ETFs
-wisdomtree_commodity_futures = "COMF.SW"
-lyxor_commodities_rogers_international_ucits_etf = "ROGI.SW"
-invesco_commodity_futures_ucits_etf = "FUTR.SW"
-ubs_etf_cmci_commodity_futures_sf_ucits_etf = "CCFUS.SW"
-ishares_commodity_futures_strategy_ucits_etf = "ICOMF.SW"
+wisdomtree_commodity_futures = "COMF.L"
 # Commodity Currency-Hedged ETFs
-ishares_bloomberg_commodity_ucits_etf_eur_hedged = "ICOMH.SW"
-wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged = "WCOG.SW"
-ubs_etf_cmci_composite_sf_ucits_etf_chf_hedged = "CCPHC.SW"
-invesco_commodity_composite_ucits_etf_usd_hedged = "COMCU.SW"
-lyxor_commodities_crb_tr_ucits_etf_jpy_hedged = "CRBJ.SW"
-
+wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged = "WCOG.L"
 
 #FIXED INCOME SECURITIES
 # Broad Market Bond ETFs
-ishares_core_global_aggregate_bond_ucits_etf = "AGGG.SW"
-vanguard_global_bond_index_fund_ucits_etf = "VAGB.SW"
-ishares_global_corporate_bond_ucits_etf = "CORP.SW"
-spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf = "GLAG.SW"
-ubs_etf_global_aggregate_bond_ucits_etf = "AGGUS.SW"
+ishares_global_corporate_bond_ucits_etf = "CORP.L"
 # Government Bond ETFs
-ishares_switzerland_govt_bond_ucits_etf = "CHGOV.SW"
-ubs_etf_swiss_govt_bond_1_3_ucits_etf = "CH13.SW"
-spdr_bloomberg_barclays_1_3_year_us_treasury_ucits_etf = "TSY3.SW"
-ishares_us_treasury_bond_7_10yr_ucits_etf = "IBTM.SW"
-vanguard_us_government_bond_index_ucits_etf = "VUTY.SW"
+ishares_us_treasury_bond_7_10yr_ucits_etf = "IBTM.L"
 # Corporate Bond ETFs
-ishares_euro_corporate_bond_large_cap_ucits_etf = "IBCX.SW"
-spdr_bloomberg_barclays_euro_corporate_bond_ucits_etf = "SYBC.SW"
-vanguard_euro_investment_grade_bond_index_ucits_etf = "VEIG.SW"
-ubs_etf_cmci_corporate_bond_ucits_etf = "CBND.SW"
-ishares_usd_corporate_bond_ucits_etf = "LQDE.SW"
+ishares_euro_corporate_bond_large_cap_ucits_etf = "IBCX.L"
+ishares_usd_corporate_bond_ucits_etf = "LQDE.L"
 # High Yield Bond ETFs
-ishares_euro_high_yield_corporate_bond_ucits_etf = "IHYG.SW"
-spdr_bloomberg_barclays_euro_high_yield_bond_ucits_etf = "SYBJ.SW"
-vanguard_usd_emerging_markets_government_bond_ucits_etf = "VEMT.SW"
-ubs_etf_jp_morgan_usd_emerging_markets_bond_ucits_etf = "EMB.SW"
-ishares_usd_emerging_markets_bond_ucits_etf = "IEMB.SW"
+ishares_euro_high_yield_corporate_bond_ucits_etf = "IHYG.L"
+vanguard_usd_emerging_markets_government_bond_ucits_etf = "VEMT.L"
 # Inflation-Linked Bond ETFs
-ishares_euro_inflation_linked_govt_bond_ucits_etf = "IILG.SW"
-spdr_bloomberg_barclays_euro_inflation_linked_bond_ucits_etf = "SYBI.SW"
-vanguard_us_tips_ucits_etf = "VTIP.SW"
-ubs_etf_us_tips_ucits_etf = "TIPS.SW"
-ishares_us_tips_ucits_etf = "ITPS.SW"
+ishares_euro_inflation_linked_govt_bond_ucits_etf = "IBCI.L"
+ubs_etf_us_tips_ucits_etf = "TIPS.L"
 # Short Duration Bond ETFs
-ishares_euro_ultrashort_bond_ucits_etf = "ERNE.SW"
-spdr_bloomberg_barclays_0_3_year_us_corporate_bond_ucits_etf = "SYBU.SW"
-vanguard_usd_corporate_1_3_year_bond_ucits_etf = "VUSC.SW"
-ubs_etf_usd_corporate_1_3_year_bond_ucits_etf = "UC13.SW"
-ishares_usd_short_duration_corporate_bond_ucits_etf = "SDIG.SW"
+ishares_euro_ultrashort_bond_ucits_etf = "ERNE.L"
+ubs_etf_usd_corporate_1_3_year_bond_ucits_etf = "UC13.L"
 # Emerging Markets Bond ETFs
-ishares_jp_morgan_em_local_govt_bond_ucits_etf = "IEML.SW"
-spdr_bloomberg_barclays_emerging_markets_local_bond_ucits_etf = "SYBE.SW"
-vanguard_emerging_markets_bond_ucits_etf = "VEMB.SW"
-ubs_etf_jp_morgan_emerging_markets_bond_ucits_etf = "EMUS.SW"
-ishares_emerging_markets_local_govt_bond_ucits_etf = "EMLG.SW"
+ishares_jp_morgan_em_local_govt_bond_ucits_etf = "IEML.L"
 # Corporate Bond ETFs by Maturity
-invesco_bulletshares_2024_corporate_bond_ucits_etf = "BSCO.SW"
-invesco_bulletshares_2025_corporate_bond_ucits_etf = "BSCP.SW"
-invesco_bulletshares_2026_corporate_bond_ucits_etf = "BSCQ.SW"
-invesco_bulletshares_2027_corporate_bond_ucits_etf = "BSCR.SW"
-invesco_bulletshares_2028_corporate_bond_ucits_etf = "BSCS.SW"
-# High Yield Bond ETFs by Maturity
-invesco_bulletshares_2024_high_yield_corporate_bond_ucits_etf = "BSJO.SW"
-invesco_bulletshares_2025_high_yield_corporate_bond_ucits_etf = "BSJP.SW"
-invesco_bulletshares_2026_high_yield_corporate_bond_ucits_etf = "BSJQ.SW"
-invesco_bulletshares_2027_high_yield_corporate_bond_ucits_etf = "BSJR.SW"
-invesco_bulletshares_2028_high_yield_corporate_bond_ucits_etf = "BSJS.SW"
+invesco_bulletshares_2024_corporate_bond_ucits_etf = "BSCO"
+invesco_bulletshares_2026_corporate_bond_ucits_etf = "BSCQ"
+invesco_bulletshares_2027_corporate_bond_ucits_etf = "BSCR"
 # Aggregate Bond ETFs
-ishares_global_aggregate_bond_ucits_etf = "AGGG.SW"
-vanguard_global_aggregate_bond_ucits_etf = "VAGG.SW"
-spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf = "GLAG.SW"
-ubs_etf_global_aggregate_bond_ucits_etf = "AGGUS.SW"
-ishares_usd_aggregate_bond_ucits_etf = "AGGU.SW"
+ishares_global_aggregate_bond_ucits_etf = "AGGG.L"
 
 #REAL ESTATE
 # Swiss Real Estate Companies
@@ -229,25 +126,9 @@ mobimo_holding = "MOBN.SW"
 zug_estates_holding = "ZUGN.SW"
 investis_holding = "IREN.SW"
 intershop_holding = "ISN.SW"
-hiag_immobilien = "HIAG.SW"
-plazza_ag = "PLAN.SW"
-sf_urban_properties = "SFPN.SW"
-warteck_invest = "WARN.SW"
-fundamenta_real_estate = "FREN.SW"
-varia_us_properties = "VARN.SW"
-novavest_real_estate = "NREN.SW"
-zueblin_immobilien = "ZUBN.SW"
-ina_invest_holding = "INA.SW"
 # Swiss Real Estate Funds
 ubs_etf_sxi_real_estate = "SRECHA.SW"
-credit_suisse_real_estate_fund_siat = "CSREF.SW"
-ubs_property_fund_residential = "UBSPF.SW"
-credit_suisse_real_estate_fund_livingplus = "CSLP.SW"
-credit_suisse_real_estate_fund_green_property = "CSGP.SW"
-ubs_property_fund_mixed_sima = "UBSMS.SW"
-swisscanto_real_estate_fund = "SWCRF.SW"
-ubs_ast_immobilien_schweiz = "UBSIS.SW"
-la_fonciere = "LFON.SW"
+swisscanto_real_estate_fund_responsible_IFCA = "SIC.SW"
 procimmo_swiss_commercial_fund = "PSCF.SW"
 # International Real Estate ETFs
 vanguard_real_estate_etf = "VNQ"
@@ -255,16 +136,6 @@ ishares_us_real_estate_etf = "IYR"
 spdr_dow_jones_reit_etf = "RWR"
 schwab_us_reit_etf = "SCHH"
 ishares_global_reit_etf = "REET"
-vanguard_global_ex_us_real_estate_etf = "VNQI"
-spdr_dow_jones_global_real_estate_etf = "RWO"
-spdr_dow_jones_international_real_estate_etf = "RWX"
-land_securities_group = "LAND.L"
-unibail_rodamco_westfield = "URW.AS"
-vonovia_se = "VNA.DE"
-leg_immobilien = "LEG.DE"
-deutsche_wohnen = "DWNI.DE"
-grand_city_properties = "GYC.DE"
-
 
 #CRYPTOCURRENCY
 btc = "BTC-USD"
@@ -272,54 +143,32 @@ eth = "ETH-USD"
 bnb = "BNB-USD"
 xrp = "XRP-USD"
 ada = "ADA-USD"
-doge = "DOGE-USD"
-sol = "SOL-USD"
-dot = "DOT-USD"
-matic = "MATIC-USD"
-ltc = "LTC-USD"
 
 asset_class_map = {
-    "stocks": ["^SSMI", "ABBN.SW", "ALC.SW", "CFR.SW", "CSGN.SW", "GEBN.SW", "GIVN.SW", "HOLN.SW", 
-    "LOGN.SW", "LONN.SW", "NESN.SW", "NOVN.SW", "PGHN.SW", "ROG.SW", "SIKA.SW", "SOON.SW", 
-    "SCMN.SW", "SLHN.SW", "SREN.SW", "UBSG.SW", "ZURN.SW", "NVO", "MC.PA", "SAP", "ASML", 
-    "RMS.PA", "OR.PA", "TTE", "AZN", "SHEL", "LIN", "SIE.DE", "UL", "AIR.PA", "SU.PA", 
-    "SAN", "ENEL.MI", "BP", "AI.PA", "ALV.DE", "DEO", "AAPL", "MSFT", "AMZN", "GOOGL", 
-    "GOOG", "BRK.B", "META", "TSLA", "NVDA", "JPM", "JNJ", "V", "PG", "UNH", "HD", "MA", 
-    "XOM", "CVX", "PFE", "KO", "TSM", "TCEHY", "BABA", "RELIANCE.NS", "005930.KS", "3690.HK", 
-    "600519.SS", "ICICIBANK.NS", "HDFCBANK.NS", "0939.HK", "2318.HK", "6758.T", "7203.T", 
-    "1398.HK", "1288.HK", "3988.HK", "0857.HK", "0941.HK", "2317.TW", "9618.HK"],
-    "commodities": ["ICOM.SW", "WCOA.SW", "CCPHA.SW", "COMC.SW", "CRB.SW",
-    "IGLN.SW", "PHAU.SW", "AUUS.SW", "SGLD.SW", "4GLD.SW",
-    "SPOG.SW", "BRNT.SW", "CENUS.SW", "XENS.SW", "CRU.SW",
-    "SAGR.SW", "AGRI.SW", "CAGUS.SW", "FARM.SW", "AGRO.SW",
-    "ISLN.SW", "PHAG.SW", "CIMUS.SW", "SSIL.SW", "4SIL.SW",
-    "COPA.SW", "NGAS.SW", "WEAT.SW", "CORN.SW", "SOYB.SW",
-    "LOIL.SW", "SOIL.SW", "LNGA.SW", "SNGA.SW", "LBUL.SW",
-    "COAU.SW", "CRBN.SW", "GCCM.SW", "CEXUS.SW", "COMS.SW",
-    "COMF.SW", "ROGI.SW", "FUTR.SW", "CCFUS.SW", "ICOMF.SW",
-    "ICOMH.SW", "WCOG.SW", "CCPHC.SW", "COMCU.SW", "CRBJ.SW"],
-    "fixed_income": ["AGGG.SW", "VAGB.SW", "CORP.SW", "GLAG.SW", "AGGUS.SW",
-    "CHGOV.SW", "CH13.SW", "TSY3.SW", "IBTM.SW", "VUTY.SW",
-    "IBCX.SW", "SYBC.SW", "VEIG.SW", "CBND.SW", "LQDE.SW",
-    "IHYG.SW", "SYBJ.SW", "VEMT.SW", "EMB.SW", "IEMB.SW",
-    "IILG.SW", "SYBI.SW", "VTIP.SW", "TIPS.SW", "ITPS.SW",
-    "ERNE.SW", "SYBU.SW", "VUSC.SW", "UC13.SW", "SDIG.SW",
-    "IEML.SW", "SYBE.SW", "VEMB.SW", "EMUS.SW", "EMLG.SW",
-    "BSCO.SW", "BSCP.SW", "BSCQ.SW", "BSCR.SW", "BSCS.SW",
-    "BSJO.SW", "BSJP.SW", "BSJQ.SW", "BSJR.SW", "BSJS.SW",
-    "AGGG.SW", "VAGG.SW", "GLAG.SW", "AGGUS.SW", "AGGU.SW"],
-    "real_estate": ["SPSN.SW", "PSPN.SW", "ALLN.SW", "MOBN.SW", 
-    "ZUGN.SW", "IREN.SW", "ISN.SW", "HIAG.SW", 
-    "PLAN.SW", "SFPN.SW", "WARN.SW", "FREN.SW", 
-    "VARN.SW", "NREN.SW", "ZUBN.SW", "INA.SW",  
-    "SRECHA.SW", "CSREF.SW", "UBSPF.SW", "CSLP.SW", 
-    "CSGP.SW", "UBSMS.SW", "SWCRF.SW", "UBSIS.SW", 
-    "LFON.SW", "PSCF.SW", "VNQ", "IYR", 
-    "RWR", "SCHH", "REET", "VNQI", 
-    "RWO", "RWX", "LAND.L", "URW.AS", 
-    "VNA.DE", "LEG.DE", "DWNI.DE", "GYC.DE"],
-    "cryptocurrency": ["BTC-USD", "ETH-USD", "BNB-USD", "XRP-USD", "ADA-USD", 
-    "DOGE-USD", "SOL-USD", "DOT-USD", "MATIC-USD", "LTC-USD"]
+  "stocks": [
+        "^SSMI", "ABBN.SW", "ALC.SW", "CFR.SW", "KNIN.SW", "GEBN.SW", "GIVN.SW", "HOLN.SW", 
+        "LOGN.SW", "LONN.SW", "NESN.SW", "NOVN.SW", "PGHN.SW", "ROG.SW", "SIKA.SW", "SOON.SW", 
+        "SCMN.SW", "SLHN.SW", "SREN.SW", "UBSG.SW", "ZURN.SW", "NVO", "MC.PA", "SAP", "ASML", 
+        "RMS.PA", "OR.PA", "TTE", "AZN", "SHEL", "LIN", "SIE.DE", "UL", "AIR.PA", "SU.PA", 
+        "SAN", "ENEL.MI", "BP", "AI.PA", "ALV.DE", "DEO", "AAPL", "MSFT", "AMZN", "GOOGL", 
+        "GOOG", "BRK-B", "META", "TSLA", "NVDA"
+    ],
+    "commodities":[
+    "COMM.L", "LGCF.L", "IGLN.L", "4GLD.DE", "SPOG.L", "BRNT.L", "ISLN.L", 
+    "NGAS.L", "WEAT.L", "CORN.L", "SOYB.L", "LOIL.L", "SNGA.L", "COMF.L", "WCOG.L"
+    ],
+    "fixed_income": [
+        "CORP.L", "IBTM.L", "IBCX.L", "LQDE.L", "IHYG.L", 
+        "VEMT.L", "IBCI.L", "TIPS.L", "ERNE.L", "UC13.L", 
+        "IEML.L", "BSCO", "BSCQ", "BSCR", "AGGG.L"
+    ],
+   "real_estate": [
+        "SPSN.SW", "PSPN.SW", "ALLN.SW", "MOBN.SW", "ZUGN.SW", "IREN.SW", "ISN.SW", 
+        "SRECHA.SW", "SIC.SW", "PSCF.SW", "VNQ", "IYR", "RWR", "SCHH", "REET"
+    ],
+    "cryptocurrency": [
+        "BTC-USD", "ETH-USD", "BNB-USD", "XRP-USD", "ADA-USD"
+    ]
 }
 
 #HERE YOU CAN GET INTERVALLS
@@ -946,7 +795,25 @@ intervalls = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
-test_table = make_data_table(smi, abb, alcon, richemont, credit_suisse, geberit, givaudan, holcim, logitech, lonza, nestle, novartis, partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, loreal, totalenergies, astrazeneca, shell, linde, siemens, unilever, airbus, schneider_electric, banco_santander, enel, bp, air_liquide, allianz, diageo, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, tesla, nvidia, jpmorgan_chase, johnson_and_johnson, visa, procter_and_gamble, unitedhealth_group, home_depot, mastercard, exxon_mobil, chevron, pfizer, coca_cola, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank, ping_an, sony, toyota, icbc, agricultural_bank_of_china, bank_of_china, petrochina, china_mobile, hon_hai, jd, ishares_bloomberg_commodity_ucits_etf, wisdomtree_bloomberg_commodity_ucits_etf, ubs_cmci_composite_sf_ucits_etf, invesco_commodity_composite_ucits_etf, lyxor_commodities_crb_tr_ucits_etf, ishares_physical_gold_etf, wisdomtree_physical_gold, ubs_etf_gold, invesco_physical_gold_etc, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, ubs_etf_cmci_energy_sf_ucits_etf, invesco_morningstar_energy_sector_ucits_etf, lyxor_commodities_crude_oil_ucits_etf, ishares_agribusiness_ucits_etf, wisdomtree_commodities_sectors_agribusiness, ubs_etf_cmci_agriculture_sf_ucits_etf, invesco_morningstar_agribusiness_ucits_etf, lyxor_commodities_rogers_agriculture_ucits_etf, ishares_physical_silver_etf, wisdomtree_physical_silver, ubs_etf_cmci_industrial_metals_sf_ucits_etf, invesco_physical_silver_etc, xetra_silver, wisdomtree_copper, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_wti_crude_oil_1x_daily_short, wisdomtree_natural_gas_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_gold_2x_daily_leveraged, ishares_global_commodities_equity_ucits_etf, lyxor_commodities_crb_non_energies_ucits_etf, invesco_morningstar_global_commodities_ucits_etf, ubs_etf_cmci_ex_energy_sf_ucits_etf, wisdomtree_commodity_securities_limited, wisdomtree_commodity_futures, lyxor_commodities_rogers_international_ucits_etf, invesco_commodity_futures_ucits_etf, ubs_etf_cmci_commodity_futures_sf_ucits_etf, ishares_commodity_futures_strategy_ucits_etf, ishares_bloomberg_commodity_ucits_etf_eur_hedged, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ubs_etf_cmci_composite_sf_ucits_etf_chf_hedged, invesco_commodity_composite_ucits_etf_usd_hedged, lyxor_commodities_crb_tr_ucits_etf_jpy_hedged, ishares_core_global_aggregate_bond_ucits_etf, vanguard_global_bond_index_fund_ucits_etf, ishares_global_corporate_bond_ucits_etf, spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, ishares_switzerland_govt_bond_ucits_etf, ubs_etf_swiss_govt_bond_1_3_ucits_etf, spdr_bloomberg_barclays_1_3_year_us_treasury_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, vanguard_us_government_bond_index_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, spdr_bloomberg_barclays_euro_corporate_bond_ucits_etf, vanguard_euro_investment_grade_bond_index_ucits_etf, ubs_etf_cmci_corporate_bond_ucits_etf, ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf, spdr_bloomberg_barclays_euro_high_yield_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, ubs_etf_jp_morgan_usd_emerging_markets_bond_ucits_etf, ishares_usd_emerging_markets_bond_ucits_etf, ishares_euro_inflation_linked_govt_bond_ucits_etf, spdr_bloomberg_barclays_euro_inflation_linked_bond_ucits_etf, vanguard_us_tips_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf, spdr_bloomberg_barclays_0_3_year_us_corporate_bond_ucits_etf, vanguard_usd_corporate_1_3_year_bond_ucits_etf, ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, ishares_usd_short_duration_corporate_bond_ucits_etf, ishares_jp_morgan_em_local_govt_bond_ucits_etf, spdr_bloomberg_barclays_emerging_markets_local_bond_ucits_etf, vanguard_emerging_markets_bond_ucits_etf, ubs_etf_jp_morgan_emerging_markets_bond_ucits_etf, ishares_emerging_markets_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2025_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, invesco_bulletshares_2027_corporate_bond_ucits_etf, invesco_bulletshares_2028_corporate_bond_ucits_etf, invesco_bulletshares_2024_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2025_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2026_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2027_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2028_high_yield_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, vanguard_global_aggregate_bond_ucits_etf, spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, ishares_usd_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, hiag_immobilien, plazza_ag, sf_urban_properties, warteck_invest, fundamenta_real_estate, varia_us_properties, novavest_real_estate, zueblin_immobilien, ina_invest_holding, ubs_etf_sxi_real_estate, credit_suisse_real_estate_fund_siat, ubs_property_fund_residential, credit_suisse_real_estate_fund_livingplus, credit_suisse_real_estate_fund_green_property, ubs_property_fund_mixed_sima, swisscanto_real_estate_fund, ubs_ast_immobilien_schweiz, la_fonciere, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, vanguard_global_ex_us_real_estate_etf, spdr_dow_jones_global_real_estate_etf, spdr_dow_jones_international_real_estate_etf, land_securities_group, unibail_rodamco_westfield, vonovia_se, leg_immobilien, deutsche_wohnen, grand_city_properties, btc, eth, bnb, xrp, ada, doge, sol, dot, matic, ltc, interval=intervalls, period=time_horizon)
+test_table = make_data_table(smi, abb, alcon, richemont, kuehne_nagel, geberit, givaudan, holcim, logitech, lonza, nestle, novartis, 
+partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, 
+loreal, totalenergies, astrazeneca, shell, linde, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, 
+tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, 
+china_construction_bank, ishares_diversified_commodity_swap_ucits_etf, 
+invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, 
+ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
+wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, 
+wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ishares_global_corporate_bond_ucits_etf, 
+ishares_euro_corporate_bond_large_cap_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
+ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
+ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
+ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, 
+ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, 
+invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
+allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, ubs_etf_sxi_real_estate, 
+swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
+ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, btc, eth, bnb, xrp, ada, 
+interval=intervalls, period=time_horizon)
 #test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
@@ -956,16 +823,13 @@ all_possible_portfolios_all_asset_classes = []
 #Add here which stocks you want to check
 #------------STOCKS-------------
 stocks = make_asset_class(
-    smi, abb, alcon, richemont, credit_suisse, geberit, givaudan, holcim, logitech,
+    smi, abb, alcon, richemont, kuehne_nagel, geberit, givaudan, holcim, logitech,
     lonza, nestle, novartis, partners_group, roche, sika, sonova, swisscom, swiss_life,
     swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, loreal,
-    totalenergies, astrazeneca, shell, linde, siemens, unilever, airbus, schneider_electric,
-    banco_santander, enel, bp, air_liquide, allianz, diageo, apple, microsoft, amazon,
-    alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, tesla, nvidia, jpmorgan_chase,
-    johnson_and_johnson, visa, procter_and_gamble, unitedhealth_group, home_depot, mastercard,
-    exxon_mobil, chevron, pfizer, coca_cola, tsmc, tencent, alibaba, reliance, samsung,
-    meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank, ping_an, sony,
-    toyota, icbc, agricultural_bank_of_china, bank_of_china, petrochina, china_mobile, hon_hai, jd)
+    totalenergies, astrazeneca, shell, linde, apple, microsoft, amazon,
+    alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung,
+    meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank,
+    )
 
 stock_subset = find_subsets(stocks, 3)
 all_possible_portfolios_stocks = make_all_portfolios_per_asset_class(stock_subset)
@@ -974,25 +838,12 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_stocks)
 
 #------------COMMODITIES-------------
 commodities = make_asset_class(
-    ishares_bloomberg_commodity_ucits_etf, wisdomtree_bloomberg_commodity_ucits_etf, ubs_cmci_composite_sf_ucits_etf, 
-    invesco_commodity_composite_ucits_etf, lyxor_commodities_crb_tr_ucits_etf, 
-    ishares_physical_gold_etf, wisdomtree_physical_gold, ubs_etf_gold, invesco_physical_gold_etc, xetra_gold, 
-    ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, ubs_etf_cmci_energy_sf_ucits_etf, 
-    invesco_morningstar_energy_sector_ucits_etf, lyxor_commodities_crude_oil_ucits_etf, 
-    ishares_agribusiness_ucits_etf, wisdomtree_commodities_sectors_agribusiness, ubs_etf_cmci_agriculture_sf_ucits_etf, 
-    invesco_morningstar_agribusiness_ucits_etf, lyxor_commodities_rogers_agriculture_ucits_etf, 
-    ishares_physical_silver_etf, wisdomtree_physical_silver, ubs_etf_cmci_industrial_metals_sf_ucits_etf, 
-    invesco_physical_silver_etc, xetra_silver, 
-    wisdomtree_copper, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
-    wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_wti_crude_oil_1x_daily_short, wisdomtree_natural_gas_2x_daily_leveraged, 
-    wisdomtree_natural_gas_1x_daily_short, wisdomtree_gold_2x_daily_leveraged, 
-    ishares_global_commodities_equity_ucits_etf, lyxor_commodities_crb_non_energies_ucits_etf, invesco_morningstar_global_commodities_ucits_etf, 
-    ubs_etf_cmci_ex_energy_sf_ucits_etf, wisdomtree_commodity_securities_limited, 
-    wisdomtree_commodity_futures, lyxor_commodities_rogers_international_ucits_etf, invesco_commodity_futures_ucits_etf, 
-    ubs_etf_cmci_commodity_futures_sf_ucits_etf, ishares_commodity_futures_strategy_ucits_etf, 
-    ishares_bloomberg_commodity_ucits_etf_eur_hedged, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, 
-    ubs_etf_cmci_composite_sf_ucits_etf_chf_hedged, invesco_commodity_composite_ucits_etf_usd_hedged, 
-    lyxor_commodities_crb_tr_ucits_etf_jpy_hedged)
+    ishares_diversified_commodity_swap_ucits_etf, invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, 
+    xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil,
+    ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, 
+    wisdomtree_corn, wisdomtree_soybeans, wisdomtree_wti_crude_oil_2x_daily_leveraged, 
+    wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, 
+    )
 
 commodities_subset = find_subsets(commodities, 3)
 all_possible_portfolios_commodities = make_all_portfolios_per_asset_class(commodities_subset)
@@ -1000,31 +851,13 @@ all_possible_portfolios_commodities = make_all_portfolios_per_asset_class(commod
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_commodities)
 
 #------------FIXED INCOME-------------
-fixed_income = make_asset_class(ishares_core_global_aggregate_bond_ucits_etf, vanguard_global_bond_index_fund_ucits_etf, 
-    ishares_global_corporate_bond_ucits_etf, spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, 
-    ubs_etf_global_aggregate_bond_ucits_etf, ishares_switzerland_govt_bond_ucits_etf, 
-    ubs_etf_swiss_govt_bond_1_3_ucits_etf, spdr_bloomberg_barclays_1_3_year_us_treasury_ucits_etf, 
-    ishares_us_treasury_bond_7_10yr_ucits_etf, vanguard_us_government_bond_index_ucits_etf, 
-    ishares_euro_corporate_bond_large_cap_ucits_etf, spdr_bloomberg_barclays_euro_corporate_bond_ucits_etf, 
-    vanguard_euro_investment_grade_bond_index_ucits_etf, ubs_etf_cmci_corporate_bond_ucits_etf, 
-    ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf, 
-    spdr_bloomberg_barclays_euro_high_yield_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
-    ubs_etf_jp_morgan_usd_emerging_markets_bond_ucits_etf, ishares_usd_emerging_markets_bond_ucits_etf, 
-    ishares_euro_inflation_linked_govt_bond_ucits_etf, spdr_bloomberg_barclays_euro_inflation_linked_bond_ucits_etf, 
-    vanguard_us_tips_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_us_tips_ucits_etf, 
-    ishares_euro_ultrashort_bond_ucits_etf, spdr_bloomberg_barclays_0_3_year_us_corporate_bond_ucits_etf, 
-    vanguard_usd_corporate_1_3_year_bond_ucits_etf, ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, 
-    ishares_usd_short_duration_corporate_bond_ucits_etf, ishares_jp_morgan_em_local_govt_bond_ucits_etf, 
-    spdr_bloomberg_barclays_emerging_markets_local_bond_ucits_etf, vanguard_emerging_markets_bond_ucits_etf, 
-    ubs_etf_jp_morgan_emerging_markets_bond_ucits_etf, ishares_emerging_markets_local_govt_bond_ucits_etf, 
-    invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2025_corporate_bond_ucits_etf, 
-    invesco_bulletshares_2026_corporate_bond_ucits_etf, invesco_bulletshares_2027_corporate_bond_ucits_etf, 
-    invesco_bulletshares_2028_corporate_bond_ucits_etf, invesco_bulletshares_2024_high_yield_corporate_bond_ucits_etf, 
-    invesco_bulletshares_2025_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2026_high_yield_corporate_bond_ucits_etf, 
-    invesco_bulletshares_2027_high_yield_corporate_bond_ucits_etf, invesco_bulletshares_2028_high_yield_corporate_bond_ucits_etf, 
-    ishares_global_aggregate_bond_ucits_etf, vanguard_global_aggregate_bond_ucits_etf, 
-    spdr_bloomberg_barclays_global_aggregate_bond_ucits_etf, ubs_etf_global_aggregate_bond_ucits_etf, 
-    ishares_usd_aggregate_bond_ucits_etf)
+fixed_income = make_asset_class(
+    ishares_global_corporate_bond_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, 
+    ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
+    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf, 
+    ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf,
+    invesco_bulletshares_2026_corporate_bond_ucits_etf, invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf
+    )
 
 fixed_income_subset = find_subsets(fixed_income, 3)
 all_possible_portfolios_fixed_income = make_all_portfolios_per_asset_class(fixed_income_subset)
@@ -1032,17 +865,11 @@ all_possible_portfolios_fixed_income = make_all_portfolios_per_asset_class(fixed
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_fixed_income)
 
 #------------REAL ESTATE-------------
-real_estate = make_asset_class(swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, 
-    intershop_holding, hiag_immobilien, plazza_ag, sf_urban_properties, warteck_invest, fundamenta_real_estate, 
-    varia_us_properties, novavest_real_estate, zueblin_immobilien, ina_invest_holding, 
-    ubs_etf_sxi_real_estate, credit_suisse_real_estate_fund_siat, ubs_property_fund_residential, 
-    credit_suisse_real_estate_fund_livingplus, credit_suisse_real_estate_fund_green_property, 
-    ubs_property_fund_mixed_sima, swisscanto_real_estate_fund, ubs_ast_immobilien_schweiz, 
-    la_fonciere, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
-    ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, 
-    vanguard_global_ex_us_real_estate_etf, spdr_dow_jones_global_real_estate_etf, 
-    spdr_dow_jones_international_real_estate_etf, land_securities_group, unibail_rodamco_westfield, 
-    vonovia_se, leg_immobilien, deutsche_wohnen, grand_city_properties)
+real_estate = make_asset_class(
+    swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, 
+    investis_holding, intershop_holding, ubs_etf_sxi_real_estate, swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, 
+    vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf,
+    )
 
 real_estate_subset = find_subsets(real_estate, 3)
 all_possible_portfolios_real_estate = make_all_portfolios_per_asset_class(real_estate_subset)
@@ -1050,7 +877,9 @@ all_possible_portfolios_real_estate = make_all_portfolios_per_asset_class(real_e
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_estate)
 
 #------------CRYPTOCURRENCY------------
-crypto = make_asset_class(btc, eth, bnb, xrp, ada, doge, sol, dot, matic, ltc)
+crypto = make_asset_class(
+    btc, eth, bnb, xrp, ada, 
+    )
 
 crypto_subset = find_subsets(crypto, 3)
 all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subset)
