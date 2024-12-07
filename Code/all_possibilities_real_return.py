@@ -8,61 +8,28 @@ from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
 
 #STOCKS
-#SMI
+#Top 4 SMI Constituents by Market Capitalization
 smi = "^SSMI"
-abb = "ABBN.SW"
-alcon = "ALC.SW"
-richemont = "CFR.SW"
-kuehne_nagel = "KNIN.SW"
-geberit = "GEBN.SW"
-givaudan = "GIVN.SW"
-holcim = "HOLN.SW"
-logitech = "LOGN.SW"
-lonza = "LONN.SW"
+roche = "ROG.SW"
 nestle = "NESN.SW"
 novartis = "NOVN.SW"
-partners_group = "PGHN.SW"
-roche = "ROG.SW"
-sika = "SIKA.SW"
-sonova = "SOON.SW"
-swisscom = "SCMN.SW"
-swiss_life = "SLHN.SW"
-swiss_re = "SREN.SW"
-ubs = "UBSG.SW"
-zurich_insurance = "ZURN.SW"
-# Top 10 European Companies by Market Capitalization
+abb = "ABBN.SW"
+# Top 4 European Companies by Market Capitalization
 novo_nordisk = "NVO"
 lvmh = "MC.PA"
 sap = "SAP"
 asml = "ASML"
-hermes = "RMS.PA"
-loreal = "OR.PA"
-totalenergies = "TTE"
-astrazeneca = "AZN"
-shell = "SHEL"
-linde = "LIN"
-#Top 10 S&P 500 Constituents by Market Capitalization
+#Top 4 S&P 500 Constituents by Market Capitalization
 sp500 = "^GSPC"
 apple = "AAPL"
+nvidia = "NVDA"
 microsoft = "MSFT"
 amazon = "AMZN"
-alphabet_a = "GOOGL"
-alphabet_c = "GOOG"
-berkshire_hathaway = "BRK-B"
-meta_platforms = "META"
-tesla = "TSLA"
-nvidia = "NVDA"
-# Top 10 Asian Companies by Market Capitalization
+# Top 4 Asian Companies by Market Capitalization
 tsmc = "TSM"
 tencent = "TCEHY"
 alibaba = "BABA"
 reliance = "RELIANCE.NS"
-samsung = "005930.KS"
-meituan = "3690.HK"
-kweichow_moutai = "600519.SS"
-icici_bank = "ICICIBANK.NS"
-hdfc_bank = "HDFCBANK.NS"
-china_construction_bank = "0939.HK"
 
 #COMMODITIES
 # Broad Commodity ETFs
@@ -146,12 +113,10 @@ ada = "ADA-USD"
 
 asset_class_map = {
   "stocks": [
-        "^SSMI", "ABBN.SW", "ALC.SW", "CFR.SW", "KNIN.SW", "GEBN.SW", "GIVN.SW", "HOLN.SW", 
-        "LOGN.SW", "LONN.SW", "NESN.SW", "NOVN.SW", "PGHN.SW", "ROG.SW", "SIKA.SW", "SOON.SW", 
-        "SCMN.SW", "SLHN.SW", "SREN.SW", "UBSG.SW", "ZURN.SW", "NVO", "MC.PA", "SAP", "ASML", 
-        "RMS.PA", "OR.PA", "TTE", "AZN", "SHEL", "LIN", "SIE.DE", "UL", "AIR.PA", "SU.PA", 
-        "SAN", "ENEL.MI", "BP", "AI.PA", "ALV.DE", "DEO", "AAPL", "MSFT", "AMZN", "GOOGL", 
-        "GOOG", "BRK-B", "META", "TSLA", "NVDA"
+        "^SSMI", "ROG.SW", "NESN.SW", "NOVN.SW", "ABBN.SW",
+        "NVO", "MC.PA", "SAP", "ASML",
+        "^GSPC", "AAPL", "NVDA", "MSFT", "AMZN",
+        "TSM", "TCEHY", "BABA", "RELIANCE.NS"
     ],
     "commodities":[
         "COMM.L", "LGCF.L", "IGLN.L", "4GLD.DE", "SPOG.L", "BRNT.L", "ISLN.L", 
@@ -749,11 +714,11 @@ intervalls = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
-test_table = make_data_table(smi, abb, alcon, richemont, kuehne_nagel, geberit, givaudan, holcim, logitech, lonza, nestle, novartis, 
-    partners_group, roche, sika, sonova, swisscom, swiss_life, swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, 
-    loreal, totalenergies, astrazeneca, shell, linde, sp500, apple, microsoft, amazon, alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, 
-    tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung, meituan, kweichow_moutai, icici_bank, hdfc_bank, 
-    china_construction_bank, ishares_diversified_commodity_swap_ucits_etf, 
+test_table = make_data_table(
+    smi, abb, nestle, novartis, 
+    roche, novo_nordisk, lvmh, sap, asml, 
+    sp500, apple, microsoft, amazon,  
+    nvidia, tsmc, tencent, alibaba, reliance, ishares_diversified_commodity_swap_ucits_etf, 
     invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, 
     ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
     wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, 
@@ -767,7 +732,8 @@ test_table = make_data_table(smi, abb, alcon, richemont, kuehne_nagel, geberit, 
     allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, ubs_etf_sxi_real_estate, 
     swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
     ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, btc, eth, bnb, xrp, ada, 
-    interval=intervalls, period=time_horizon)
+    interval=intervalls, period=time_horizon 
+    )
 #test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
@@ -777,12 +743,8 @@ all_possible_portfolios_all_asset_classes = []
 #Add here which stocks you want to check
 #------------STOCKS-------------
 stocks = make_asset_class(
-    smi, abb, alcon, richemont, kuehne_nagel, geberit, givaudan, holcim, logitech,
-    lonza, nestle, novartis, partners_group, roche, sika, sonova, swisscom, swiss_life,
-    swiss_re, ubs, zurich_insurance, novo_nordisk, lvmh, sap, asml, hermes, loreal,
-    totalenergies, astrazeneca, shell, linde, apple, microsoft, amazon,
-    alphabet_a, alphabet_c, berkshire_hathaway, meta_platforms, tesla, nvidia, tsmc, tencent, alibaba, reliance, samsung,
-    meituan, kweichow_moutai, icici_bank, hdfc_bank, china_construction_bank,
+    smi, abb, nestle, novartis, roche, novo_nordisk, lvmh, sap, asml,
+    apple, microsoft, amazon, nvidia, tsmc, tencent, alibaba, reliance
     )
 
 stock_subset = find_subsets(stocks, 2)
@@ -796,7 +758,7 @@ commodities = make_asset_class(
     xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil,
     ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, 
     wisdomtree_corn, wisdomtree_soybeans, wisdomtree_wti_crude_oil_2x_daily_leveraged, 
-    wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, 
+    wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged 
     )
 
 commodities_subset = find_subsets(commodities, 2)
@@ -822,7 +784,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_fixed_i
 real_estate = make_asset_class(
     swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, 
     investis_holding, intershop_holding, ubs_etf_sxi_real_estate, swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, 
-    vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf,
+    vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf
     )
 
 real_estate_subset = find_subsets(real_estate, 1)
@@ -832,7 +794,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_es
 
 #------------CRYPTOCURRENCY------------
 crypto = make_asset_class(
-    btc, eth, bnb, xrp, ada, 
+    btc, eth, bnb, xrp, ada 
     )
 
 crypto_subset = find_subsets(crypto, 2)
