@@ -6,110 +6,68 @@ import os
 import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
+from tabulate import tabulate as tab
+from PIL import Image, ImageDraw, ImageFont
+
 
 #STOCKS
 #Top 3 SMI Constituents by Market Capitalization
-smi = "^SSMI"
 roche = "ROG.SW"
 nestle = "NESN.SW"
+novartis = "NOVN.SW"
 #Top 3 European Companies by Market Capitalization
 novo_nordisk = "NVO"
 lvmh = "MC.PA"
 sap = "SAP"
 #Top 3 S&P 500 Constituents by Market Capitalization
-sp500 = "^GSPC"
 apple = "AAPL"
 nvidia = "NVDA"
-#Top 3 Asian Companies by Market Capitalization
-tsmc = "TSM"
-tencent = "TCEHY"
+microsoft = "MSFT"
 
 #COMMODITIES
 # Broad Commodity ETFs
 invesco_commodity_composite_ucits_etf = "LGCF.L"
-# Gold ETFs
 ishares_physical_gold_etf = "IGLN.L"
-# Energy ETFs
 wisdomtree_brent_crude_oil = "BRNT.L"
-# Agriculture ETFs
-# Silver ETFs
-ishares_physical_silver_etf = "ISLN.L"
-# Specific Commodity ETFs
-wisdomtree_natural_gas = "NGAS.L"
-wisdomtree_wheat = "WEAT.L"
-wisdomtree_corn = "CORN.L"
-wisdomtree_soybeans = "SOYB.L"
-# Leveraged and Inverse Commodity ETFs
-# Commodity Equity ETFs
-# Commodity Futures ETFs
-# Commodity Currency-Hedged ETFs
 
 #FIXED INCOME SECURITIES
-# Broad Market Bond ETFs
 ishares_global_corporate_bond_ucits_etf = "CORP.L"
-# Government Bond ETFs
-ishares_us_treasury_bond_7_10yr_ucits_etf = "IBTM.L"
-# Corporate Bond ETFs
+ishares_euro_corporate_bond_large_cap_ucits_etf = "IBCX.L"
 ishares_usd_corporate_bond_ucits_etf = "LQDE.L"
-# High Yield Bond ETFs
-ishares_euro_high_yield_corporate_bond_ucits_etf = "IHYG.L"
-# Inflation-Linked Bond ETFs
-ishares_euro_inflation_linked_govt_bond_ucits_etf = "IBCI.L"
-ubs_etf_us_tips_ucits_etf = "TIPS.L"
-# Short Duration Bond ETFs
-ishares_euro_ultrashort_bond_ucits_etf = "ERNE.L"
-# Emerging Markets Bond ETFs
-ishares_jp_morgan_em_local_govt_bond_ucits_etf = "IEML.L"
-# Corporate Bond ETFs by Maturity
-# Aggregate Bond ETFs
 
 #REAL ESTATE
 # Swiss Real Estate Companies
 swiss_prime_site = "SPSN.SW"
-psp_swiss_property = "PSPN.SW"
-allreal_holding = "ALLN.SW"
-mobimo_holding = "MOBN.SW"
-# Swiss Real Estate Funds
 ubs_etf_sxi_real_estate = "SRECHA.SW"
-procimmo_swiss_commercial_fund = "PSCF.SW"
-# International Real Estate ETFs
-ishares_us_real_estate_etf = "IYR"
-ishares_global_reit_etf = "REET"
+vanguard_real_estate_etf = "VNQ"
 
 #CRYPTOCURRENCY
 btc = "BTC-USD"
 eth = "ETH-USD"
 bnb = "BNB-USD"
-xrp = "XRP-USD"
-ada = "ADA-USD"
+
 
 asset_class_map = {
   "stocks": [
-        "^SSMI", "ROG.SW", "NESN.SW", 
-        "NVO", "MC.PA", "SAP", 
-        "^GSPC", "AAPL", "NVDA", 
-        "TSM", "TCEHY"
+        "ROG.SW", "NESN.SW", "NOVN.SW",
+        "NVO", "MC.PA", "SAP",
+        "AAPL", "NVDA", "MSFT", 
     ],
-    "commodities": [
-        "LGCF.L", "IGLN.L", "BRNT.L", 
-        "ISLN.L", "NGAS.L", "WEAT.L", "CORN.L", 
-        "SOYB.L"
+    "commodities":[
+        "LGCF.L", "IGLN.L", "BRNT.L"
     ],
     "fixed_income": [
-        "CORP.L", "IBTM.L", "LQDE.L", 
-        "IHYG.L", "IBCI.L", "TIPS.L", 
-        "ERNE.L", "IEML.L"
+       "CORP.L", "IBCX.L", "LQDE.L"
     ],
-    "real_estate": [
-        "SPSN.SW", "PSPN.SW", "ALLN.SW", "MOBN.SW", 
-        "SRECHA.SW", "PSCF.SW", "IYR", "REET"
+   "real_estate": [
+        "SPSN.SW", "SRECHA.SW", "VNQ"
     ],
     "cryptocurrency": [
-        "BTC-USD", "ETH-USD", "BNB-USD", "XRP-USD", "ADA-USD"
+        "BTC-USD", "ETH-USD", "BNB-USD"
     ]
 }
 
-#HERE YOU CAN GET INTERVALS
+#HERE YOU CAN GET INTERVALLS
 monthyl ="1mo"
 quarterly = "3mo"
 
@@ -257,7 +215,7 @@ def calculate_single_beta(x, y):
     # Return the beta (slope) coefficient
     return model.coef_[0]
 
-def calculate_beta(portfolio, portfolio_name):
+def calculate_correlation(portfolio, portfolio_name):
     #read dataset
     # Replace 'path_to_cpi_data.csv' with the actual path to your CPI CSV file
     cpi_data = pd.read_csv(dataset_path)
@@ -308,27 +266,23 @@ def calculate_beta(portfolio, portfolio_name):
     merged_data_yoy.replace([np.inf, -np.inf], np.nan, inplace=True)
     merged_data_yoy.dropna(inplace=True)
 
-    beta_values = []
+    correlation_values = []
 
     for column in merged_data_mom.columns:
         if column != 'Inflation_Rate_MoM':  # Skip the CPI column itself
-            beta = calculate_single_beta(
-                merged_data_mom['Inflation_Rate_MoM'],  # Independent variable (Inflation)
-                merged_data_mom[column]                # Dependent variable (Asset returns)
-            )
-            #print(f"Beta value for {column}: {beta}")
-            beta_values.append(beta)
+            # Calculate correlation with CPI data for the entire dataset
+            correlation = merged_data_mom['Inflation_Rate_MoM'].corr(merged_data_mom[column])
+            correlation_values.append(correlation)
+
 
     for column in merged_data_yoy.columns:
         if column != 'Inflation_Rate_YoY':  # Skip the CPI column itself
-            beta = calculate_single_beta(
-                merged_data_yoy['Inflation_Rate_YoY'],  # Independent variable (Inflation)
-                merged_data_yoy[column]                # Dependent variable (Asset returns)
-            )
-            #print(f"Beta value for {column}: {beta}")
-            beta_values.append(beta)
+            # Calculate correlation with CPI data for the entire dataset
+            correlation = merged_data_yoy['Inflation_Rate_YoY'].corr(merged_data_yoy[column])
+            correlation_values.append(correlation)
+            
 
-    return beta_values
+    return correlation_values
 
 def make_all_portfolios(asset_classes, intervals, time_horizons, data_table):
 
@@ -368,7 +322,7 @@ def calculate_single_beta_for_all_portfolios(all_portfolios):
         # Loop through each portfolio
         for portfolio_name, portfolio_data in portfolios.items():
             # Calculate the correlation with CPI
-            correlation = calculate_beta(portfolio_data, portfolio_name)
+            correlation = calculate_correlation(portfolio_data, portfolio_name)
             
             # Store the correlation result
             correlations_by_interval[interval][portfolio_name] = correlation
@@ -518,7 +472,7 @@ def split_and_sort(dataframe):
     return mom_table, yoy_table
 
 
-def calcualte_beta_for_all(all_combinations):
+def calculate_beta_for_all(all_combinations):
 
     all_tables = {}
     for all in all_combinations:
@@ -609,7 +563,7 @@ def group_by_timestamp(data):
     
     return grouped_data
 
-def create_max_correlation_table(data, table_type):
+""" def create_max_correlation_table(data, table_type):
     timeframes = ['2y', '5y', '10y', 'max']
     asset_classes = data.keys()
     
@@ -630,9 +584,38 @@ def create_max_correlation_table(data, table_type):
                 # Format: "Ticker: Value"
                 result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.6f}"
     
+    return result_table """
+
+def create_max_correlation_table(data, table_type):
+    timeframes = ['2y', '5y', '10y', 'max']
+    asset_classes = data.keys()
+    
+    # Initialize the results table
+    result_table = pd.DataFrame(index=timeframes, columns=asset_classes)
+    
+    # Fill the table
+    for asset_class in asset_classes:
+        for timeframe in timeframes:
+            # Check if the asset class has data for this timeframe and table type
+            if timeframe in data[asset_class] and table_type in data[asset_class][timeframe]:
+                # Get the table for the timeframe and type
+                df = data[asset_class][timeframe][table_type]
+                
+                # Ensure there are valid values
+                if df.iloc[:, 1].notna().any():
+                    # Find the row with the maximum correlation value
+                    max_row = df.loc[df.iloc[:, 1].idxmax()]  # Assuming correlation is in the 2nd column
+                    # Format: "Ticker: Value"
+                    result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.2f}"
+                else:
+                    # Handle case where all values are NaN
+                    result_table.loc[timeframe, asset_class] = "No valid data"
+    
     return result_table
 
-def create_min_correlation_table(data, table_type):
+
+
+""" def create_min_correlation_table(data, table_type):
     timeframes = ['2y', '5y', '10y', 'max']
     asset_classes = data.keys()
     
@@ -653,9 +636,59 @@ def create_min_correlation_table(data, table_type):
                 # Format: "Ticker: Value"
                 result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.6f}"
     
+    return result_table """
+
+def create_min_correlation_table(data, table_type):
+    timeframes = ['2y', '5y', '10y', 'max']
+    asset_classes = data.keys()
+    
+    # Initialize the results table
+    result_table = pd.DataFrame(index=timeframes, columns=asset_classes)
+    
+    # Fill the table
+    for asset_class in asset_classes:
+        for timeframe in timeframes:
+            # Check if the asset class has data for this timeframe and table type
+            if timeframe in data[asset_class] and table_type in data[asset_class][timeframe]:
+                # Get the table for the timeframe and type
+                df = data[asset_class][timeframe][table_type]
+                
+                # Ensure there are valid values
+                if df.iloc[:, 1].notna().any():
+                    # Find the row with the minimum correlation value
+                    min_row = df.loc[df.iloc[:, 1].idxmin()]  # Assuming correlation is in the 2nd column
+                    # Format: "Ticker: Value"
+                    result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.2f}"
+                else:
+                    # Handle case where all values are NaN
+                    result_table.loc[timeframe, asset_class] = "No valid data"
+    
     return result_table
 
 def display_table_as_figure(df, title):
+    
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+
+    # Convert all values in the DataFrame to numeric where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Define the color-scaling function
+    def cell_color(val):
+        if pd.isna(val):  # If value is NaN
+            return "white"  # Default background color
+        elif val > 0.5:
+            return "lightgreen"  # High values
+        elif val <= 0:
+            return "lightcoral"  # Negative values
+        else:
+            return "white"  # Default color for neutral values
+
+    
     fig, ax = plt.subplots(figsize=(10, len(df) * 0.6))  # Adjust height based on rows
     ax.axis('off')  # Turn off the axis
     ax.axis('tight')  # Tight layout for the table
@@ -668,13 +701,65 @@ def display_table_as_figure(df, title):
         cellLoc="center",
         loc="center"
     )
+            
+    for (row, col), cell in table.get_celld().items():
+        if row == 0 or col == -1:  # Skip headers
+            cell.set_fontsize(10)
+            cell.set_text_props(weight="bold")
+            continue
+        try:
+            # Get the numeric value for the cell
+            value = df_numeric.iloc[row - 1, col]
+            # Apply the color to the cell background
+            cell.set_facecolor(cell_color(value))
+        except:
+            cell.set_facecolor("white")  # Default for invalid or non-numeric cells
+
     table.auto_set_font_size(False)
     table.set_fontsize(10)
     table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
 
+
+            
     # Add title
     plt.title(title, fontsize=14, pad=20)
     plt.show()
+
+
+def display_table_with_tab(df, title):
+    """
+    Display a DataFrame as a tabular text format using tabulate.
+    Converts numeric values, handles non-numeric data, and applies title.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the table.
+    """
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return x  # Keep non-numeric values unchanged
+
+    # Convert all values in the DataFrame to numeric where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Convert the DataFrame into a tabulated format
+    table = tab(
+        df_numeric,
+        headers="keys",  # Use column headers
+        tablefmt="pretty",  # Choose a table format
+        showindex=True  # Include row index
+    )
+
+    # Print the title and the table
+    print("\n" + title + "\n" + "-" * len(title))  # Print the title with a separator
+    print(table)
+
+
+
+
 
 def display_table_with_colorscale(df, title):
     """
@@ -702,7 +787,7 @@ def display_table_with_colorscale(df, title):
     def cell_color(val):
         if pd.isna(val):  # If value is NaN
             return "white"  # Default background color
-        elif val > 1:
+        elif val > 0.5:
             return "lightgreen"  # High values
         elif val <= 0:
             return "lightcoral"  # Negative values
@@ -748,27 +833,19 @@ def display_table_with_colorscale(df, title):
     # Display the figure
     plt.show()
 
-
 intervals = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
+#test_table = make_data_table(smi, sp500, world_etf, europe_etf, em_etf, gold, gold_etf, ch_gov_bond, tips_bond,treasury_etf, emerg_mark_bond, vang_real_est_etf, btc, eth, interval=intervals, period=time_horizon)
 test_table = make_data_table(
-    smi, nestle, roche, novo_nordisk, lvmh, sap, sp500, apple,  
-    nvidia, tsmc, tencent,
+    nestle, novartis, roche, novo_nordisk, lvmh, sap, apple, microsoft, nvidia, 
     invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, wisdomtree_brent_crude_oil, 
-    ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
-    ishares_global_corporate_bond_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
-    ishares_euro_high_yield_corporate_bond_ucits_etf,
-    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
-    ishares_jp_morgan_em_local_govt_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
-    allreal_holding, mobimo_holding, ubs_etf_sxi_real_estate, 
-    procimmo_swiss_commercial_fund, ishares_us_treasury_bond_7_10yr_ucits_etf,
-    ishares_us_real_estate_etf, ishares_global_reit_etf, 
-    btc, eth, bnb, xrp, ada, 
+    ishares_global_corporate_bond_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
+    swiss_prime_site,  ubs_etf_sxi_real_estate, vanguard_real_estate_etf, 
+    btc, eth, bnb, 
     interval=intervals, period=time_horizon
     ) 
-#test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervals, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
 all_possible_portfolios_all_asset_classes = []
@@ -777,8 +854,8 @@ all_possible_portfolios_all_asset_classes = []
 #Add here which stocks you want to check
 #------------STOCKS-------------
 stocks = make_asset_class(
-    smi, nestle, roche, novo_nordisk, lvmh, sap,
-    apple, nvidia, tsmc, tencent
+    nestle, novartis, roche, novo_nordisk, lvmh, sap,
+    apple, microsoft, nvidia, 
     )
 
 stock_subset = find_subsets(stocks, 2)
@@ -788,9 +865,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_stocks)
 
 #------------COMMODITIES-------------
 commodities = make_asset_class(
-    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, wisdomtree_brent_crude_oil,
-    ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, 
-    wisdomtree_corn, wisdomtree_soybeans 
+    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, wisdomtree_brent_crude_oil
     )
 
 commodities_subset = find_subsets(commodities, 2)
@@ -800,10 +875,8 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_commodi
 
 #------------FIXED INCOME-------------
 fixed_income = make_asset_class(
-    ishares_global_corporate_bond_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, 
-    ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf,
-    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
-    ishares_jp_morgan_em_local_govt_bond_ucits_etf
+    ishares_global_corporate_bond_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, 
+    ishares_usd_corporate_bond_ucits_etf
     )
 
 fixed_income_subset = find_subsets(fixed_income, 2)
@@ -813,8 +886,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_fixed_i
 
 #------------REAL ESTATE-------------
 real_estate = make_asset_class(
-    swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, 
-    ubs_etf_sxi_real_estate, procimmo_swiss_commercial_fund, ishares_us_real_estate_etf, ishares_global_reit_etf
+    swiss_prime_site, ubs_etf_sxi_real_estate, vanguard_real_estate_etf
     )
 
 real_estate_subset = find_subsets(real_estate, 2)
@@ -824,7 +896,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_es
 
 #------------CRYPTOCURRENCY------------
 crypto = make_asset_class(
-    btc, eth, bnb, xrp, ada 
+    btc, eth, bnb
     )
 
 crypto_subset = find_subsets(crypto, 2)
@@ -833,13 +905,14 @@ all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subs
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
 
 
-all_returns = calcualte_beta_for_all(all_possible_portfolios_all_asset_classes)
+all_returns = calculate_beta_for_all(all_possible_portfolios_all_asset_classes)
 
-#CLEANU UP DATA
+#CLEAN UP DATA
 #drop interval
 all_returns_no_intervall = drop_interval_column(all_returns)
 #change titles
 reclassified_data = reclassify_titles_cleaned(all_returns_no_intervall, asset_class_map)
+print(reclassified_data)
 #group by timestamp
 grouped_data = group_by_timestamp(reclassified_data)
 
@@ -852,11 +925,93 @@ yoy_table_max = create_max_correlation_table(grouped_data, 'YoY_table')
 mom_table_min = create_min_correlation_table(grouped_data, 'MoM_table')
 yoy_table_min = create_min_correlation_table(grouped_data, 'YoY_table')
 
+
+# Color code tables 
+
+def color_scale_table(df):
+    """
+    Apply color scaling to a DataFrame.
+    Highlights cells in green for values > 0.5 and red for values <= 0.5.
+    
+    Parameters:
+        df (pd.DataFrame): The DataFrame to style.
+    
+    Returns:
+        pd.io.formats.style.Styler: A styled DataFrame with color formatting.
+    """
+    # Ensure all numeric values are floats, replace non-numeric entries with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return np.nan  # Replace non-numeric values with NaN
+    
+    # Apply numeric conversion
+    df_numeric = df.applymap(safe_float)
+
+    # Define a helper function for individual cells
+    # Define a helper function for individual cells
+    def color_scale(val):
+        if pd.isna(val):  # Check for NaN
+            return ''  # No style for NaN
+        return 'background-color: green' if val > 0.5 else 'background-color: red'
+    
+    # Apply the color scale function element-wise to the DataFrame
+    return df_numeric.style.applymap(color_scale)
+
+
+
+def display_heatmap(df, title, cmap):
+    """
+    Display a DataFrame as a heatmap.
+    
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the heatmap.
+        cmap (str): The colormap to use (default: "coolwarm").
+    """
+    # Convert all numeric values, handle non-numeric cells as NaN
+    # df = df.applymap(lambda x: round(float(x), 2) if isinstance(x, (int, float, np.number)) else x)
+
+    def safe_float(x):
+        try:
+            return round(float(x), 2)
+        except:
+            return np.nan  # Keep non-numeric values as is
+    
+    df = df.applymap(safe_float)
+    
+    # Drop rows and columns that are entirely NaN
+    df_numeric = df.dropna(how='all', axis=0)  # Drop rows with all NaNs
+    df_numeric = df_numeric.dropna(how='all', axis=1)  # Drop columns with all NaNs
+
+    # Check if the DataFrame is empty after cleaning
+    if df_numeric.empty:
+        print("The DataFrame is empty after cleaning. Cannot plot a heatmap.")
+        return
+    
+    # Create the heatmap
+    plt.figure(figsize=(10, len(df) * 0.6))
+    sns.heatmap(df_numeric, annot=True, fmt=".2f", cmap=cmap, linewidths=0.5, cbar=True, 
+                xticklabels=df.columns, yticklabels=df.index)
+
+    # Add title and labels
+    plt.title(title, fontsize=14, pad=20)
+    plt.xlabel("Asset Classes")
+    plt.ylabel("Timeframes")
+    plt.tight_layout()
+    plt.show()
+
+# display_heatmap(mom_table_max, "Maximum MoM Correlation Table", cmap="coolwarm")
+
 # Display the tables as figures
 # display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
 # display_table_as_figure(yoy_table_max, "Maximum YoY Correlation Table")
 # display_table_as_figure(mom_table_min, "Minimum MoM Correlation Table")
 # display_table_as_figure(yoy_table_min, "Minimum YoY Correlation Table")
+
+display_table_with_tab(mom_table_max, "Maximum MoM Correlation Table") # Displays in terminal
+
 
 display_table_with_colorscale(mom_table_max, "Maximum MoM Correlation Table")
 display_table_with_colorscale(yoy_table_max, "Maximum YoY Correlation Table")

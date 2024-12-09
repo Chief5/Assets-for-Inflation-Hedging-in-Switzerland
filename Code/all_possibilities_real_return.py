@@ -8,38 +8,28 @@ from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
 
 #STOCKS
-#Top 4 SMI Constituents by Market Capitalization
+#Top 3 SMI Constituents by Market Capitalization
 smi = "^SSMI"
 roche = "ROG.SW"
 nestle = "NESN.SW"
-novartis = "NOVN.SW"
-abb = "ABBN.SW"
-# Top 4 European Companies by Market Capitalization
+#Top 3 European Companies by Market Capitalization
 novo_nordisk = "NVO"
 lvmh = "MC.PA"
 sap = "SAP"
-asml = "ASML"
-#Top 4 S&P 500 Constituents by Market Capitalization
+#Top 3 S&P 500 Constituents by Market Capitalization
 sp500 = "^GSPC"
 apple = "AAPL"
 nvidia = "NVDA"
-microsoft = "MSFT"
-amazon = "AMZN"
-# Top 4 Asian Companies by Market Capitalization
+#Top 3 Asian Companies by Market Capitalization
 tsmc = "TSM"
 tencent = "TCEHY"
-alibaba = "BABA"
-reliance = "RELIANCE.NS"
 
 #COMMODITIES
 # Broad Commodity ETFs
-ishares_diversified_commodity_swap_ucits_etf = "COMM.L"
 invesco_commodity_composite_ucits_etf = "LGCF.L"
 # Gold ETFs
 ishares_physical_gold_etf = "IGLN.L"
-xetra_gold = "4GLD.DE"
 # Energy ETFs
-ishares_oil_gas_exploration_production_ucits_etf = "SPOG.L"
 wisdomtree_brent_crude_oil = "BRNT.L"
 # Agriculture ETFs
 # Silver ETFs
@@ -50,13 +40,9 @@ wisdomtree_wheat = "WEAT.L"
 wisdomtree_corn = "CORN.L"
 wisdomtree_soybeans = "SOYB.L"
 # Leveraged and Inverse Commodity ETFs
-wisdomtree_wti_crude_oil_2x_daily_leveraged = "LOIL.L"
-wisdomtree_natural_gas_1x_daily_short = "SNGA.L"
 # Commodity Equity ETFs
 # Commodity Futures ETFs
-wisdomtree_commodity_futures = "COMF.L"
 # Commodity Currency-Hedged ETFs
-wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged = "WCOG.L"
 
 #FIXED INCOME SECURITIES
 # Broad Market Bond ETFs
@@ -64,25 +50,18 @@ ishares_global_corporate_bond_ucits_etf = "CORP.L"
 # Government Bond ETFs
 ishares_us_treasury_bond_7_10yr_ucits_etf = "IBTM.L"
 # Corporate Bond ETFs
-ishares_euro_corporate_bond_large_cap_ucits_etf = "IBCX.L"
 ishares_usd_corporate_bond_ucits_etf = "LQDE.L"
 # High Yield Bond ETFs
 ishares_euro_high_yield_corporate_bond_ucits_etf = "IHYG.L"
-vanguard_usd_emerging_markets_government_bond_ucits_etf = "VEMT.L"
 # Inflation-Linked Bond ETFs
 ishares_euro_inflation_linked_govt_bond_ucits_etf = "IBCI.L"
 ubs_etf_us_tips_ucits_etf = "TIPS.L"
 # Short Duration Bond ETFs
 ishares_euro_ultrashort_bond_ucits_etf = "ERNE.L"
-ubs_etf_usd_corporate_1_3_year_bond_ucits_etf = "UC13.L"
 # Emerging Markets Bond ETFs
 ishares_jp_morgan_em_local_govt_bond_ucits_etf = "IEML.L"
 # Corporate Bond ETFs by Maturity
-invesco_bulletshares_2024_corporate_bond_ucits_etf = "BSCO"
-invesco_bulletshares_2026_corporate_bond_ucits_etf = "BSCQ"
-invesco_bulletshares_2027_corporate_bond_ucits_etf = "BSCR"
 # Aggregate Bond ETFs
-ishares_global_aggregate_bond_ucits_etf = "AGGG.L"
 
 #REAL ESTATE
 # Swiss Real Estate Companies
@@ -90,18 +69,11 @@ swiss_prime_site = "SPSN.SW"
 psp_swiss_property = "PSPN.SW"
 allreal_holding = "ALLN.SW"
 mobimo_holding = "MOBN.SW"
-zug_estates_holding = "ZUGN.SW"
-investis_holding = "IREN.SW"
-intershop_holding = "ISN.SW"
 # Swiss Real Estate Funds
 ubs_etf_sxi_real_estate = "SRECHA.SW"
-swisscanto_real_estate_fund_responsible_IFCA = "SIC.SW"
 procimmo_swiss_commercial_fund = "PSCF.SW"
 # International Real Estate ETFs
-vanguard_real_estate_etf = "VNQ"
 ishares_us_real_estate_etf = "IYR"
-spdr_dow_jones_reit_etf = "RWR"
-schwab_us_reit_etf = "SCHH"
 ishares_global_reit_etf = "REET"
 
 #CRYPTOCURRENCY
@@ -113,30 +85,31 @@ ada = "ADA-USD"
 
 asset_class_map = {
   "stocks": [
-        "^SSMI", "ROG.SW", "NESN.SW", "NOVN.SW", "ABBN.SW",
-        "NVO", "MC.PA", "SAP", "ASML",
-        "^GSPC", "AAPL", "NVDA", "MSFT", "AMZN",
-        "TSM", "TCEHY", "BABA", "RELIANCE.NS"
+        "^SSMI", "ROG.SW", "NESN.SW", 
+        "NVO", "MC.PA", "SAP", 
+        "^GSPC", "AAPL", "NVDA", 
+        "TSM", "TCEHY"
     ],
-    "commodities":[
-        "COMM.L", "LGCF.L", "IGLN.L", "4GLD.DE", "SPOG.L", "BRNT.L", "ISLN.L", 
-        "NGAS.L", "WEAT.L", "CORN.L", "SOYB.L", "LOIL.L", "SNGA.L", "COMF.L", "WCOG.L"
+    "commodities": [
+        "LGCF.L", "IGLN.L", "BRNT.L", 
+        "ISLN.L", "NGAS.L", "WEAT.L", "CORN.L", 
+        "SOYB.L"
     ],
     "fixed_income": [
-        "CORP.L", "IBTM.L", "IBCX.L", "LQDE.L", "IHYG.L", 
-        "VEMT.L", "IBCI.L", "TIPS.L", "ERNE.L", "UC13.L", 
-        "IEML.L", "BSCO", "BSCQ", "BSCR", "AGGG.L"
+        "CORP.L", "IBTM.L", "LQDE.L", 
+        "IHYG.L", "IBCI.L", "TIPS.L", 
+        "ERNE.L", "IEML.L"
     ],
-   "real_estate": [
-        "SPSN.SW", "PSPN.SW", "ALLN.SW", "MOBN.SW", "ZUGN.SW", "IREN.SW", "ISN.SW", 
-        "SRECHA.SW", "SIC.SW", "PSCF.SW", "VNQ", "IYR", "RWR", "SCHH", "REET"
+    "real_estate": [
+        "SPSN.SW", "PSPN.SW", "ALLN.SW", "MOBN.SW", 
+        "SRECHA.SW", "PSCF.SW", "IYR", "REET"
     ],
     "cryptocurrency": [
         "BTC-USD", "ETH-USD", "BNB-USD", "XRP-USD", "ADA-USD"
     ]
 }
 
-#HERE YOU CAN GET INTERVALLS
+#HERE YOU CAN GET INTERVALS
 monthyl ="1mo"
 quarterly = "3mo"
 
@@ -555,7 +528,7 @@ def calcualte_beta_for_all(all_combinations):
 
     all_tables = {}
     for all in all_combinations:
-        all_portfolios = make_all_portfolios(all, intervalls, time_horizon, test_table)
+        all_portfolios = make_all_portfolios(all, intervals, time_horizon, test_table)
         all_single_beta_values = calculate_single_beta_for_all_portfolios(all_portfolios)
         flattened_data = flatten_data(all_single_beta_values)
         mom_table, yoy_table = split_and_sort(flattened_data)
@@ -783,31 +756,26 @@ def display_table_with_colorscale(df, title):
     plt.show()
 
 
-intervalls = [monthyl]
+intervals = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
 test_table = make_data_table(
-    smi, abb, nestle, novartis, 
-    roche, novo_nordisk, lvmh, sap, asml, 
-    sp500, apple, microsoft, amazon,  
-    nvidia, tsmc, tencent, alibaba, reliance, ishares_diversified_commodity_swap_ucits_etf, 
-    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil, 
+    smi, nestle, roche, novo_nordisk, lvmh, sap, sp500, apple,  
+    nvidia, tsmc, tencent,
+    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, wisdomtree_brent_crude_oil, 
     ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, wisdomtree_corn, wisdomtree_soybeans, 
-    wisdomtree_wti_crude_oil_2x_daily_leveraged, wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, 
-    wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged, ishares_global_corporate_bond_ucits_etf, 
-    ishares_euro_corporate_bond_large_cap_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
-    ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
+    ishares_global_corporate_bond_ucits_etf, ishares_usd_corporate_bond_ucits_etf, 
+    ishares_euro_high_yield_corporate_bond_ucits_etf,
     ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
-    ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, 
-    ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf, invesco_bulletshares_2026_corporate_bond_ucits_etf, 
-    invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
-    allreal_holding, mobimo_holding, zug_estates_holding, investis_holding, intershop_holding, ubs_etf_sxi_real_estate, 
-    swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, vanguard_real_estate_etf, 
-    ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf, btc, eth, bnb, xrp, ada, 
-    interval=intervalls, period=time_horizon 
-    )
-#test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervalls, period=time_horizon)
+    ishares_jp_morgan_em_local_govt_bond_ucits_etf, swiss_prime_site, psp_swiss_property, 
+    allreal_holding, mobimo_holding, ubs_etf_sxi_real_estate, 
+    procimmo_swiss_commercial_fund, ishares_us_treasury_bond_7_10yr_ucits_etf,
+    ishares_us_real_estate_etf, ishares_global_reit_etf, 
+    btc, eth, bnb, xrp, ada, 
+    interval=intervals, period=time_horizon
+    ) 
+#test_table = make_data_table(smi, sp500, world_etf, europe_etf, eth, btc, interval=intervals, period=time_horizon)
 
 #Keep all possible portoflios of all asset classes here
 all_possible_portfolios_all_asset_classes = []
@@ -816,8 +784,8 @@ all_possible_portfolios_all_asset_classes = []
 #Add here which stocks you want to check
 #------------STOCKS-------------
 stocks = make_asset_class(
-    smi, abb, nestle, novartis, roche, novo_nordisk, lvmh, sap, asml,
-    apple, microsoft, amazon, nvidia, tsmc, tencent, alibaba, reliance
+    smi, nestle, roche, novo_nordisk, lvmh, sap,
+    apple, nvidia, tsmc, tencent
     )
 
 stock_subset = find_subsets(stocks, 2)
@@ -827,11 +795,9 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_stocks)
 
 #------------COMMODITIES-------------
 commodities = make_asset_class(
-    ishares_diversified_commodity_swap_ucits_etf, invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, 
-    xetra_gold, ishares_oil_gas_exploration_production_ucits_etf, wisdomtree_brent_crude_oil,
+    invesco_commodity_composite_ucits_etf, ishares_physical_gold_etf, wisdomtree_brent_crude_oil,
     ishares_physical_silver_etf, wisdomtree_natural_gas, wisdomtree_wheat, 
-    wisdomtree_corn, wisdomtree_soybeans, wisdomtree_wti_crude_oil_2x_daily_leveraged, 
-    wisdomtree_natural_gas_1x_daily_short, wisdomtree_commodity_futures, wisdomtree_bloomberg_commodity_ucits_etf_gbp_hedged 
+    wisdomtree_corn, wisdomtree_soybeans 
     )
 
 commodities_subset = find_subsets(commodities, 2)
@@ -841,11 +807,10 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_commodi
 
 #------------FIXED INCOME-------------
 fixed_income = make_asset_class(
-    ishares_global_corporate_bond_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, ishares_euro_corporate_bond_large_cap_ucits_etf, 
-    ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf, vanguard_usd_emerging_markets_government_bond_ucits_etf, 
-    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf, 
-    ubs_etf_usd_corporate_1_3_year_bond_ucits_etf, ishares_jp_morgan_em_local_govt_bond_ucits_etf, invesco_bulletshares_2024_corporate_bond_ucits_etf,
-    invesco_bulletshares_2026_corporate_bond_ucits_etf, invesco_bulletshares_2027_corporate_bond_ucits_etf, ishares_global_aggregate_bond_ucits_etf
+    ishares_global_corporate_bond_ucits_etf, ishares_us_treasury_bond_7_10yr_ucits_etf, 
+    ishares_usd_corporate_bond_ucits_etf, ishares_euro_high_yield_corporate_bond_ucits_etf,
+    ishares_euro_inflation_linked_govt_bond_ucits_etf, ubs_etf_us_tips_ucits_etf, ishares_euro_ultrashort_bond_ucits_etf,
+    ishares_jp_morgan_em_local_govt_bond_ucits_etf
     )
 
 fixed_income_subset = find_subsets(fixed_income, 2)
@@ -855,12 +820,11 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_fixed_i
 
 #------------REAL ESTATE-------------
 real_estate = make_asset_class(
-    swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, zug_estates_holding, 
-    investis_holding, intershop_holding, ubs_etf_sxi_real_estate, swisscanto_real_estate_fund_responsible_IFCA, procimmo_swiss_commercial_fund, 
-    vanguard_real_estate_etf, ishares_us_real_estate_etf, spdr_dow_jones_reit_etf, schwab_us_reit_etf, ishares_global_reit_etf
+    swiss_prime_site, psp_swiss_property, allreal_holding, mobimo_holding, 
+    ubs_etf_sxi_real_estate, procimmo_swiss_commercial_fund, ishares_us_real_estate_etf, ishares_global_reit_etf
     )
 
-real_estate_subset = find_subsets(real_estate, 1)
+real_estate_subset = find_subsets(real_estate, 2)
 all_possible_portfolios_real_estate = make_all_portfolios_per_asset_class(real_estate_subset)
 
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_real_estate)

@@ -27,7 +27,6 @@ nvidia = "NVDA"
 tsmc = "TSM"
 tencent = "TCEHY"
 
-
 #COMMODITIES
 # Broad Commodity ETFs
 invesco_commodity_composite_ucits_etf = "LGCF.L"
