@@ -362,7 +362,7 @@ def plot_combined_correlation_table(correlations_dict):
         yoy_data.append((interval, table_df_yoy))
 
     # Plotting
-    fig, axes = plt.subplots(nrows=len(mom_data), ncols=2, figsize=(16, len(mom_data) * 5))
+    fig, axes = plt.subplots(nrows=len(mom_data), ncols=2, figsize=(10, len(mom_data) * 5))
     fig.suptitle("Single Beta Analysis", fontsize=16)
 
     # Loop through intervals for MoM and YoY
@@ -583,7 +583,7 @@ def create_max_correlation_table(data, table_type):
                 max_row = df.loc[df.iloc[:, 1].idxmax()]  # Assuming correlation is in the 2nd column
                 
                 # Format: "Ticker: Value"
-                result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.6f}"
+                result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.2f}"
     
     return result_table
 
@@ -606,7 +606,7 @@ def create_min_correlation_table(data, table_type):
                 min_row = df.loc[df.iloc[:, 1].idxmin()]  # Assuming correlation is in the 2nd column
                 
                 # Format: "Ticker: Value"
-                result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.6f}"
+                result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.2f}"
     
     return result_table
 
@@ -657,15 +657,15 @@ def display_table_with_colorscale(df, title):
     def cell_color(val):
         if pd.isna(val):  # If value is NaN
             return "white"  # Default background color
-        elif val > 1:
-            return "lightgreen"  # High values
         elif val <= 0:
             return "lightcoral"  # Negative values
+        elif val > np.average(df_numeric):
+            return "lightgreen"  # High values
         else:
             return "white"  # Default color for neutral values
 
     # Create a Matplotlib figure
-    fig, ax = plt.subplots(figsize=(10, len(df) * 0.8))  # Adjust figure size dynamically
+    fig, ax = plt.subplots(figsize=(8, len(df) * 0.8))  # Adjust figure size dynamically
     ax.axis("off")  # Turn off axes
 
     # Create the table
