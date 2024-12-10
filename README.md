@@ -15,8 +15,6 @@ This paper investigates which asset classes provide a reliable hedge against inf
 - [Data](#data)
 - [Features](#features)
 - [Installation](#installation)
-- [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
