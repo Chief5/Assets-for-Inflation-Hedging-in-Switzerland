@@ -842,7 +842,7 @@ all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
 
 all_returns = calcualte_beta_for_all(all_possible_portfolios_all_asset_classes)
 
-#CLEANU UP DATA
+#CLEAN UP DATA
 #drop interval
 all_returns_no_intervall = drop_interval_column(all_returns)
 #change titles
