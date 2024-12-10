@@ -825,17 +825,18 @@ def display_table_with_colorscale(df, title):
     df_numeric = df.applymap(safe_float)
 
     # Debugging: Check the converted DataFrame
-    print("Converted DataFrame (Numeric):")
-    print(df_numeric)
+    # print("Converted DataFrame (Numeric):")
+    # print(df_numeric)
 
     # Define the color-scaling function
     def cell_color(val):
         if pd.isna(val):  # If value is NaN
             return "white"  # Default background color
-        elif val > 0.5:
-            return "lightgreen"  # High values
         elif val <= 0:
             return "lightcoral"  # Negative values
+        
+        elif val > 0.5:
+            return "lightgreen"  # High values
         else:
             return "white"  # Default color for neutral values
 
