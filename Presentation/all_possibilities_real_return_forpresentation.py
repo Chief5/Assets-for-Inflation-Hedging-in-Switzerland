@@ -286,7 +286,7 @@ def calculate_beta(portfolio, portfolio_name):
             inflation_adjustment = (1 + merged_data_yoy['Inflation_Rate_YoY'] / 100).prod() - 1
             # Calculate single real return
             real_return = ((1 + nominal_return) / (1 + inflation_adjustment) - 1) * 100
-            print(f"Single YoY real return for {column} is {real_return:.4f}%")
+            # print(f"Single YoY real return for {column} is {real_return:.4f}%")
             real_return_values.append(real_return)
 
 
@@ -841,7 +841,7 @@ dfs =[
 
 titles = ["Maximum MoM Correlation Table" , "Maximum YoY Correlation Table","Minimum MoM Correlation Table", "Minimum YoY Correlation Table" ]
 
-with PdfPages("Combined_Real_Returns_Tables.pdf") as pdf:
+with PdfPages("Results/Combined_Real_Returns_Tables.pdf") as pdf:
     for df, title in zip(dfs, titles):
         # Save each table to the PDF
         display_table_with_colorscale(df, title, pdf)
