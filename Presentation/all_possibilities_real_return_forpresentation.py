@@ -664,10 +664,11 @@ def display_table_with_colorscale(df, title):
     def cell_color(val):
         if pd.isna(val):  # If value is NaN
             return "white"  # Default background color
-        elif val > 50:
-            return "lightgreen"  # High values
-        elif val <= 10:
+        elif val <= 0:
             return "lightcoral"  # Negative values
+        
+        elif val > np.median(df_numeric): # Median better metric than average to account for outliers and unbias results
+            return "lightgreen"  # High values
         else:
             return "white"  # Default color for neutral values
 
