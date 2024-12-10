@@ -8,6 +8,7 @@ from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
 from tabulate import tabulate as tab
 from PIL import Image, ImageDraw, ImageFont
+from matplotlib.backends.backend_pdf import PdfPages
 
 
 #STOCKS
@@ -759,9 +760,7 @@ def display_table_with_tab(df, title):
 
 
 
-
-
-def display_table_with_colorscale(df, title):
+def display_table_with_colorscale(df, title,save_path=None):
     """
     Displays a DataFrame as a Matplotlib table with a color scale applied to the cells.
 
@@ -787,15 +786,15 @@ def display_table_with_colorscale(df, title):
     def cell_color(val):
         if pd.isna(val):  # If value is NaN
             return "white"  # Default background color
-        elif val > 0.5:
-            return "lightgreen"  # High values
         elif val <= 0:
-            return "lightcoral"  # Negative values
+            return "plum"  # Negative values
+        elif val > 0.5:
+            return "skyblue"  # High values
         else:
             return "white"  # Default color for neutral values
 
     # Create a Matplotlib figure
-    fig, ax = plt.subplots(figsize=(10, len(df) * 0.8))  # Adjust figure size dynamically
+    fig, ax = plt.subplots(figsize=(15, len(df) * 0.8))  # Adjust figure size dynamically
     ax.axis("off")  # Turn off axes
 
     # Create the table
@@ -811,6 +810,7 @@ def display_table_with_colorscale(df, title):
     for (row, col), cell in table.get_celld().items():
         if row == 0 or col == -1:  # Skip headers and row labels
             cell.set_fontsize(10)
+            cell.set_height(0.4)
             cell.set_text_props(weight="bold")
             continue
         try:
@@ -821,17 +821,34 @@ def display_table_with_colorscale(df, title):
         except Exception as e:
             print(f"Error applying color to cell ({row}, {col}): {e}")
             cell.set_facecolor("white")  # Default for invalid or non-numeric cells
+        
+        else: 
+            cell.set_height(0.4)
 
     # Adjust font size and column width
     table.auto_set_font_size(False)
-    table.set_fontsize(10)
+    table.set_fontsize(12)
     table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
 
-    # Add a title
-    plt.title(title, fontsize=14, pad=20)
+        
+# Add a title
+    plt.title(title, fontsize=14, pad=110)
 
+    # Save to the provided PdfPages object, if available
+    if pdf is not None:
+        pdf.savefig(fig, bbox_inches='tight')
+    else:
+        plt.show()
+
+    # Close the figure to free up memory
+    plt.close(fig)
+    
+        
     # Display the figure
     plt.show()
+    
+
+
 
 intervals = [monthyl]
 time_horizon = [two_year, five_year, ten_year, max_year]    
@@ -1013,7 +1030,24 @@ def display_heatmap(df, title, cmap):
 display_table_with_tab(mom_table_max, "Maximum MoM Correlation Table") # Displays in terminal
 
 
-display_table_with_colorscale(mom_table_max, "Maximum MoM Correlation Table")
-display_table_with_colorscale(yoy_table_max, "Maximum YoY Correlation Table")
-display_table_with_colorscale(mom_table_min, "Minimum MoM Correlation Table")
-display_table_with_colorscale(yoy_table_min, "Minimum YoY Correlation Table")
+# display_table_with_colorscale(mom_table_max, "Maximum MoM Correlation Table")
+# display_table_with_colorscale(yoy_table_max, "Maximum YoY Correlation Table")
+# display_table_with_colorscale(mom_table_min, "Minimum MoM Correlation Table")
+# display_table_with_colorscale(yoy_table_min, "Minimum YoY Correlation Table")
+
+
+
+dfs =[
+    mom_table_max,
+    yoy_table_max,
+    mom_table_min,
+    yoy_table_min
+    
+]
+
+titles = ["Maximum MoM Correlation Table" , "Maximum YoY Correlation Table","Minimum MoM Correlation Table", "Minimum YoY Correlation Table" ]
+
+with PdfPages("Combined_All_Possibilities_Corr_Tables.pdf") as pdf:
+    for df, title in zip(dfs, titles):
+        # Save each table to the PDF
+        display_table_with_colorscale(df, title, pdf)
