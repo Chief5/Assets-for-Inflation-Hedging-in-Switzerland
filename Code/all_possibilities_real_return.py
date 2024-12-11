@@ -6,7 +6,7 @@ import yfinance as yf
 import os
 from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
-import tabulate as tab
+from tabulate import tabulate as tab
 # import seaborn as sns
 # from PIL import Image, ImageDraw, ImageFont
 

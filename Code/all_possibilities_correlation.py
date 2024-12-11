@@ -357,6 +357,7 @@ def make_all_portfolios(asset_classes, intervals, time_horizons, data_table):
 
     return all_portfolios_by_interval
 
+
 def calculate_single_beta_for_all_portfolios(all_portfolios):
 
     # Initialize a dictionary to store the correlations
