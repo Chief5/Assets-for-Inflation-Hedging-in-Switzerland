@@ -74,4 +74,7 @@ To replicate the environment and run the project, follow these steps:
    ```
    docker build -t inflation-hedge .
    docker run --rm -it inflation-hedge bash
-  ```
+    ```
+   
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
