@@ -521,7 +521,7 @@ def split_and_sort(dataframe):
     return mom_table, yoy_table
 
 
-def calcualte_beta_for_all(all_combinations):
+def calculate_beta_for_all(all_combinations):
 
     all_tables = {}
     for all in all_combinations:
@@ -890,7 +890,7 @@ all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subs
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
 
 
-all_returns = calcualte_beta_for_all(all_possible_portfolios_all_asset_classes)
+all_returns = calculate_beta_for_all(all_possible_portfolios_all_asset_classes)
 
 #CLEANU UP DATA
 #drop interval

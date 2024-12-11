@@ -527,7 +527,7 @@ def split_and_sort(dataframe):
     return mom_table, yoy_table
 
 
-def calcualte_beta_for_all(all_combinations):
+def calculate_beta_for_all(all_combinations):
 
     all_tables = {}
     for all in all_combinations:
@@ -677,6 +677,7 @@ def display_table_as_figure(df, title):
         cellLoc="center",
         loc="center"
     )
+    table.scale(1,2)
     table.auto_set_font_size(False)
     table.set_fontsize(10)
     table.auto_set_column_width(col=list(range(len(df.columns))))  # Auto-adjust column width
@@ -714,7 +715,7 @@ def display_table_with_colorscale(df, title,save_path=None):
         elif val <= 0:
             return "plum"  # Negative values
         elif val > np.median(df_numeric):
-            return "skyblue"  # High values
+            return "skyblue"  # High values, median is considered to mitigate the outlier effect shown if we take the average
         else:
             return "white"  # Default color for neutral values
 
@@ -889,7 +890,7 @@ all_possible_portfolios_crypto = make_all_portfolios_per_asset_class(crypto_subs
 all_possible_portfolios_all_asset_classes.append(all_possible_portfolios_crypto)
 
 
-all_returns = calcualte_beta_for_all(all_possible_portfolios_all_asset_classes)
+all_returns = calculate_beta_for_all(all_possible_portfolios_all_asset_classes)
 
 #CLEAN UP DATA
 #drop interval
