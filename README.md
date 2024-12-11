@@ -65,7 +65,7 @@ We employed three analytical approaches to evaluate asset performance:
 To replicate the environment and run the project, follow these steps:
 
 1. Clone the repository:
-   git clone https://github.com/yourusername/Assets-for-Inflation-Hedging-in-Switzerland.git
+   git clone https://github.com/Chief5/Assets-for-Inflation-Hedging-in-Switzerland.git
    cd your-repo
 2. Install Docker if not already installed. Refer to the Docker installation guide.
 3. Build the Docker image:
