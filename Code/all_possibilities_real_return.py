@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 import yfinance as yf
 import os
-import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
-from matplotlib.backends.backend_pdf import PdfPages
+import tabulate as tab
+# import seaborn as sns
+# from PIL import Image, ImageDraw, ImageFont
 
 #STOCKS
 #Top 3 SMI Constituents by Market Capitalization
@@ -111,7 +113,7 @@ asset_class_map = {
 }
 
 #HERE YOU CAN GET INTERVALS
-monthyl ="1mo"
+monthly ="1mo"
 quarterly = "3mo"
 
 #HERE YOU CAN GET TIME HORIZON
@@ -683,8 +685,6 @@ def display_table_as_figure(df, title):
     plt.title(title, fontsize=14, pad=20)
     plt.show()
 
-
-
 def display_table_with_colorscale(df, title,save_path=None):
     """
     Displays a DataFrame as a Matplotlib table with a color scale applied to the cells.
@@ -772,8 +772,40 @@ def display_table_with_colorscale(df, title,save_path=None):
     # Display the figure
     plt.show()
     
-    
-intervals = [monthyl]
+
+def display_table_with_tab(df, title):
+    """
+    Display a DataFrame as a tabular text format using tabulate.
+    Converts numeric values, handles non-numeric data, and applies title.
+
+    Parameters:
+        df (pd.DataFrame): The DataFrame to display.
+        title (str): The title for the table.
+    """
+    # Ensure all numeric values are floats and replace non-numeric with NaN
+    def safe_float(x):
+        try:
+            return float(x)  # Convert to float if possible
+        except:
+            return x  # Keep non-numeric values unchanged
+
+    # Convert all values in the DataFrame to numeric where possible
+    df_numeric = df.applymap(safe_float)
+
+    # Convert the DataFrame into a tabulated format
+    table = tab(
+        df_numeric,
+        headers="keys",  # Use column headers
+        tablefmt="pretty",  # Choose a table format
+        showindex=True  # Include row index
+    )
+
+    # Print the title and the table
+    print("\n" + title + "\n" + "-" * len(title))  # Print the title with a separator
+    print(table)
+
+
+intervals = [monthly]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
@@ -888,7 +920,6 @@ yoy_table_min = create_min_correlation_table(grouped_data, 'YoY_table')
 # display_table_with_colorscale(yoy_table_min, "Minimum YoY Correlation Table")
 
 
-
 dfs =[
     mom_table_max,
     yoy_table_max,
@@ -903,3 +934,6 @@ with PdfPages("Results/1_Real_Returns_CorrTables_All_Tickers_.pdf") as pdf:
     for df, title in zip(dfs, titles):
         # Save each table to the PDF
         display_table_with_colorscale(df, title, pdf)
+        
+        
+display_table_with_tab(mom_table_max, "Maximum MoM Correlation Table") # Displays in terminal

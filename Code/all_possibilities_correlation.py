@@ -1,14 +1,15 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
 import yfinance as yf
 import os
-import seaborn as sns
 from sklearn.linear_model import LinearRegression
 from itertools import chain, combinations
 from tabulate import tabulate as tab
-from PIL import Image, ImageDraw, ImageFont
-from matplotlib.backends.backend_pdf import PdfPages
+# import seaborn as sns
+# from PIL import Image, ImageDraw, ImageFont
+
 
 
 #STOCKS
@@ -114,7 +115,7 @@ asset_class_map = {
 }
 
 #HERE YOU CAN GET INTERVALLS
-monthyl ="1mo"
+monthly ="1mo"
 quarterly = "3mo"
 
 #HERE YOU CAN GET TIME HORIZON
@@ -883,7 +884,7 @@ def display_table_with_colorscale(df, title,save_path=None):
 
 
 
-intervals = [monthyl]
+intervals = [monthly]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
