@@ -1,6 +1,6 @@
 # Inflation Hedging Strategies for Swiss Investors
 
-![GitHub last commit](https://img.shields.io/github/last-commit/yourusername/Assets-for-Inflation-Hedging-in-Switzerland)
+![GitHub last commit](https://img.shields.io/github/last-commit/Chief5/Assets-for-Inflation-Hedging-in-Switzerland)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 This project investigates which asset classes provide a reliable hedge against inflation for Swiss investors. Using historical data, we analyze the performance of equities, bonds, real estate, and commodities during periods of high inflation. The findings are for informational and academic purposes only and should not be construed as financial advice or recommendations.
