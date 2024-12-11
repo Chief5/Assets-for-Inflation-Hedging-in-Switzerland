@@ -629,7 +629,7 @@ def create_max_correlation_table(data, table_type):
                 max_row = df.loc[df.iloc[:, 1].idxmax()]  # Assuming correlation is in the 2nd column
                 
                 # Format: "Ticker: Value"
-                result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.6f}"
+                result_table.loc[timeframe, asset_class] = f"{max_row['Portfolio']}: {max_row.iloc[1]:.2f}"
     
     return result_table
 
@@ -652,7 +652,7 @@ def create_min_correlation_table(data, table_type):
                 min_row = df.loc[df.iloc[:, 1].idxmin()]  # Assuming correlation is in the 2nd column
                 
                 # Format: "Ticker: Value"
-                result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.6f}"
+                result_table.loc[timeframe, asset_class] = f"{min_row['Portfolio']}: {min_row.iloc[1]:.2f}"
     
     return result_table
 
