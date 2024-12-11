@@ -842,7 +842,7 @@ dfs =[
 
 titles = ["Maximum MoM Correlation Table" , "Maximum YoY Correlation Table","Minimum MoM Correlation Table", "Minimum YoY Correlation Table" ]
 
-with PdfPages("Results/Combined_Reg_Tables.pdf") as pdf:
+with PdfPages("Results/2_All_Possibilities_Regression_Tables.pdf") as pdf:
     for df, title in zip(dfs, titles):
         # Save each table to the PDF
         display_table_with_colorscale(df, title, pdf)
