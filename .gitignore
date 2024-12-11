@@ -1,0 +1,39 @@
+# Byte-compiled Python files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+env/
+*.env
+
+# Logs and debug output
+*.log
+
+# Build and distribution directories
+dist/
+build/
+
+# Docker files and caches
+*.docker
+*.tar
+**/.env  # If you're using environment variables for Docker setup
+
+# Jupyter Notebook checkpoints (if used for dynamic tools)
+.ipynb_checkpoints/
+
+# IDE settings
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Exclude any sensitive or temporary files
+config/
+secrets.json
+
+# Ignore large datasets or generated files
+data/
+output/
