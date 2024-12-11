@@ -67,7 +67,7 @@ asset_class_map = {
 }
 
 #HERE YOU CAN GET INTERVALS
-monthyl ="1mo"
+monthly ="1mo"
 quarterly = "3mo"
 
 #HERE YOU CAN GET TIME HORIZON
@@ -730,7 +730,7 @@ def display_table_with_colorscale(df, title,save_path=None):
     
 
     
-intervals = [monthyl]
+intervals = [monthly]
 time_horizon = [two_year, five_year, ten_year, max_year]    
 
 #Download all Data 
@@ -842,7 +842,7 @@ dfs =[
 
 titles = ["Maximum MoM Correlation Table" , "Maximum YoY Correlation Table","Minimum MoM Correlation Table", "Minimum YoY Correlation Table" ]
 
-with PdfPages("Results/2_All_Possibilities_Regression_Tables.pdf") as pdf:
+with PdfPages("Results/2_Presentation_All_Possibilities_Regression_Tables.pdf") as pdf:
     for df, title in zip(dfs, titles):
         # Save each table to the PDF
         display_table_with_colorscale(df, title, pdf)

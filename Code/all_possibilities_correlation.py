@@ -723,18 +723,6 @@ def display_table_as_figure(df, title):
     # Convert all values in the DataFrame to numeric where possible
     df_numeric = df.applymap(safe_float)
 
-    # Define the color-scaling function
-    def cell_color(val):
-        if pd.isna(val):  # If value is NaN
-            return "white"  # Default background color
-        elif val > 0.5:
-            return "lightgreen"  # High values
-        elif val <= 0:
-            return "lightcoral"  # Negative values
-        else:
-            return "white"  # Default color for neutral values
-
-    
     fig, ax = plt.subplots(figsize=(10, len(df) * 0.6))  # Adjust height based on rows
     ax.axis('off')  # Turn off the axis
     ax.axis('tight')  # Tight layout for the table
@@ -1000,83 +988,7 @@ mom_table_min = create_min_correlation_table(grouped_data, 'MoM_table')
 yoy_table_min = create_min_correlation_table(grouped_data, 'YoY_table')
 
 
-# Color code tables 
 
-def color_scale_table(df):
-    """
-    Apply color scaling to a DataFrame.
-    Highlights cells in green for values > 0.5 and red for values <= 0.5.
-    
-    Parameters:
-        df (pd.DataFrame): The DataFrame to style.
-    
-    Returns:
-        pd.io.formats.style.Styler: A styled DataFrame with color formatting.
-    """
-    # Ensure all numeric values are floats, replace non-numeric entries with NaN
-    def safe_float(x):
-        try:
-            return float(x)  # Convert to float if possible
-        except:
-            return np.nan  # Replace non-numeric values with NaN
-    
-    # Apply numeric conversion
-    df_numeric = df.applymap(safe_float)
-
-    # Define a helper function for individual cells
-    # Define a helper function for individual cells
-    def color_scale(val):
-        if pd.isna(val):  # Check for NaN
-            return ''  # No style for NaN
-        return 'background-color: green' if val > 0.5 else 'background-color: red'
-    
-    # Apply the color scale function element-wise to the DataFrame
-    return df_numeric.style.applymap(color_scale)
-
-
-
-def display_heatmap(df, title, cmap):
-    """
-    Display a DataFrame as a heatmap.
-    
-    Parameters:
-        df (pd.DataFrame): The DataFrame to display.
-        title (str): The title for the heatmap.
-        cmap (str): The colormap to use (default: "coolwarm").
-    """
-    # Convert all numeric values, handle non-numeric cells as NaN
-    # df = df.applymap(lambda x: round(float(x), 2) if isinstance(x, (int, float, np.number)) else x)
-
-    def safe_float(x):
-        try:
-            return round(float(x), 2)
-        except:
-            return np.nan  # Keep non-numeric values as is
-    
-    df = df.applymap(safe_float)
-    
-    # Drop rows and columns that are entirely NaN
-    df_numeric = df.dropna(how='all', axis=0)  # Drop rows with all NaNs
-    df_numeric = df_numeric.dropna(how='all', axis=1)  # Drop columns with all NaNs
-
-    # Check if the DataFrame is empty after cleaning
-    if df_numeric.empty:
-        print("The DataFrame is empty after cleaning. Cannot plot a heatmap.")
-        return
-    
-    # Create the heatmap
-    plt.figure(figsize=(10, len(df) * 0.6))
-    sns.heatmap(df_numeric, annot=True, fmt=".2f", cmap=cmap, linewidths=0.5, cbar=True, 
-                xticklabels=df.columns, yticklabels=df.index)
-
-    # Add title and labels
-    plt.title(title, fontsize=14, pad=20)
-    plt.xlabel("Asset Classes")
-    plt.ylabel("Timeframes")
-    plt.tight_layout()
-    plt.show()
-
-# display_heatmap(mom_table_max, "Maximum MoM Correlation Table", cmap="coolwarm")
 
 # Display the tables as figures
 # display_table_as_figure(mom_table_max, "Maximum MoM Correlation Table")
