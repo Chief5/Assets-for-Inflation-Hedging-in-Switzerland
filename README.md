@@ -65,13 +65,13 @@ We employed three analytical approaches to evaluate asset performance:
 To replicate the environment and run the project, follow these steps:
 
 1. Clone the repository:
+   ```
    git clone https://github.com/Chief5/Assets-for-Inflation-Hedging-in-Switzerland.git
    cd your-repo
-2. Install Docker if not already installed. Refer to the Docker installation guide.
-3. Build the Docker image:
+   ```
+3. Install Docker if not already installed. Refer to the Docker installation guide.
+4. Build the Docker image:
+   ```
    docker build -t inflation-hedge .
-   docker run --rm -it inflation
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+   docker run --rm -it inflation-hedge bash
+  ```
