@@ -1,5 +1,6 @@
 # This code takes a smaller sample than the original for quicker rendering. 
-# Only for Presentation Purposes. Not final complete results.import pandas as pd
+# Only for Presentation Purposes. Not final complete results.
+import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import yfinance as yf
